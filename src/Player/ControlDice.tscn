@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Player/ControlDice.gd" type="Script" id=2]
 [ext_resource path="res://assets/dice_faces.png" type="Texture" id=3]
@@ -44,6 +44,226 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="Animation" id=9]
+resource_name = "RollNorth"
+length = 0.12
+step = 0.12
+tracks/0/type = "value"
+tracks/0/path = NodePath("OldFaces:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0, 0.5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NewFaces:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0, 0.5 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("OldFaces:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 64, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.12 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_old_faces"
+} ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "RollNorth"
+length = 0.12
+step = 0.12
+tracks/0/type = "value"
+tracks/0/path = NodePath("OldFaces:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NewFaces:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NewFaces:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0, 64 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.12 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_old_faces"
+} ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "RollSouth"
+length = 0.12
+step = 0.12
+tracks/0/type = "value"
+tracks/0/path = NodePath("OldFaces:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.5, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NewFaces:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("OldFaces:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 64 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.12 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_old_faces"
+} ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "RollWest"
+length = 0.12
+step = 0.12
+tracks/0/type = "value"
+tracks/0/path = NodePath("OldFaces:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0, 0.5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NewFaces:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0, 0.5 ), Vector2( 0.5, 0.5 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NewFaces:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 64, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.12 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "set_old_faces"
+} ]
+}
+
 [node name="ControlDice" type="Area2D"]
 script = ExtResource( 2 )
 
@@ -53,10 +273,25 @@ shape = SubResource( 8 )
 
 [node name="MoveTween" type="Tween" parent="."]
 
-[node name="Faces" type="AnimatedSprite" parent="."]
+[node name="OldFaces" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "faces"
 centered = false
+
+[node name="NewFaces" type="AnimatedSprite" parent="."]
+position = Vector2( 64, 0 )
+scale = Vector2( 1e-05, 0.5 )
+frames = SubResource( 1 )
+animation = "faces"
+frame = 1
+centered = false
+
+[node name="RollAnimation" type="AnimationPlayer" parent="."]
+playback_speed = 0.8
+anims/RollEast = SubResource( 9 )
+anims/RollNorth = SubResource( 12 )
+anims/RollSouth = SubResource( 11 )
+anims/RollWest = SubResource( 10 )
 
 [connection signal="area_entered" from="." to="." method="_on_ControlDice_area_entered"]
