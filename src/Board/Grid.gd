@@ -8,13 +8,14 @@ signal move
 
 export var ControlDice = preload("res://src/Player/ControlDice.tscn")
 
-var current_dice : ControlDice = null
+var current_dice  = null
 var dice_position : Vector2 = Vector2(0, 0)
 
 var _grid = []
 var moving : bool = false
 
 var loading_edge = 6
+
 func _ready() -> void:
 	for y in (POS.grid_rows):
 		var row = []
@@ -24,17 +25,27 @@ func _ready() -> void:
 	spawn_dice()
 		
 
-#func _draw():
-#	var draw = true
-#	for x in range(POS.grid_columns):
-#		for y in range(POS.grid_rows):
-#			if (x + y) % 2 == 0:
-#				draw_rect(Rect2(global_position.x + x * POS.tile_size + global_position.x, y * POS.tile_size + global_position.y, POS.tile_size, POS.tile_size), "#0000FF")
+func _on_RefillTimer_timeout() -> void:
+	spawn_dice()
+
+func _on_Grid_body_entered(body: Node) -> void:
+	if body is Projectile:
+		var damage = (body as Projectile).target
+		if is_in_grid(damage):
+			set_tile_state(damage, tile_states.broken)
+		body.queue_free()
+
+func start_refill_timer():
+	$RefillTimer.start()
 
 func spawn_dice() -> void:
+	reset_dice()
 	var dice = ControlDice.instance()
-	add_child(dice)
+	dice.connect("consumed", self, "start_refill_timer")
 	current_dice = dice
+	add_child(dice)
+	
+
 func move_dice(direction : int) -> void:
 	var destination = dice_position + POS.directions[direction]
 	if is_in_grid(destination):
@@ -57,12 +68,13 @@ func get_tile_state(coordinates : Vector2) -> int:
 
 func set_tile_state(coordinates : Vector2, state : int) -> void:
 	_grid[coordinates.y][coordinates.x] = state
-	$Tilemap.set_cell(coordinates.x, coordinates.y, state)
+	$TileMap.set_cell(coordinates.x, coordinates.y, state)
+
+func reset_dice():
+	moving = false
+	dice_position = Vector2.ZERO
 
 
-func _on_Grid_body_entered(body: Node) -> void:
-	if body is Projectile:
-		var damage = (body as Projectile).target
-		if is_in_grid(damage):
-			set_tile_state(damage, tile_states.broken)
-		body.queue_free()
+
+
+
