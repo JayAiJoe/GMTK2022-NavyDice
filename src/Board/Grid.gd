@@ -8,14 +8,11 @@ signal move
 
 export var ControlDice = preload("res://src/Player/ControlDice.tscn")
 
-
 var current_dice : ControlDice = null
 var dice_position : Vector2 = Vector2(0, 0)
 
 var _grid = []
 var moving : bool = false
-
-
 
 func _ready() -> void:
 	for y in (POS.grid_rows):
@@ -26,14 +23,12 @@ func _ready() -> void:
 	spawn_dice()
 		
 
-
 #func _draw():
 #	var draw = true
 #	for x in range(POS.grid_columns):
 #		for y in range(POS.grid_rows):
 #			if (x + y) % 2 == 0:
 #				draw_rect(Rect2(global_position.x + x * POS.tile_size + global_position.x, y * POS.tile_size + global_position.y, POS.tile_size, POS.tile_size), "#0000FF")
-
 
 func move_dice(direction : int) -> void:
 	var destination = dice_position + POS.directions[direction]
