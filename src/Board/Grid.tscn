@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Board/Grid.gd" type="Script" id=1]
+[ext_resource path="res://assets/floofloor hole.png" type="Texture" id=2]
 [ext_resource path="res://assets/grid_template.png" type="Texture" id=3]
-[ext_resource path="res://assets/floor.jpg" type="Texture" id=4]
+[ext_resource path="res://assets/floor sprite border.png" type="Texture" id=4]
 
 [sub_resource type="TileSet" id=1]
-0/name = "floor.jpg 0"
+0/name = "floor sprite border.png 0"
 0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
@@ -19,11 +20,11 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-1/name = "floor.jpg 1"
-1/texture = ExtResource( 4 )
+1/name = "floofloor hole.png 1"
+1/texture = ExtResource( 2 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 320, 128, 64, 64 )
+1/region = Rect2( 0, 0, 64, 64 )
 1/tile_mode = 0
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )

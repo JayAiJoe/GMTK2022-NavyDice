@@ -100,7 +100,7 @@ row = 1
 x_direction = -1
 
 [node name="Cannon" parent="Armaments/Cannon" index="1"]
-flip_v = true
+flip_h = true
 
 [node name="Cannon2" parent="Armaments" index="1" instance=ExtResource( 3 )]
 position = Vector2( -64, 64 )
@@ -108,7 +108,7 @@ row = 2
 x_direction = -1
 
 [node name="Cannon" parent="Armaments/Cannon2" index="1"]
-flip_v = true
+flip_h = true
 
 [node name="AnimationPlayer" parent="Armaments/Cannon2" index="2"]
 anims/Firing = SubResource( 1 )
@@ -119,7 +119,7 @@ row = 3
 x_direction = -1
 
 [node name="Cannon" parent="Armaments/Cannon3" index="1"]
-flip_v = true
+flip_h = true
 
 [node name="AnimationPlayer" parent="Armaments/Cannon3" index="2"]
 anims/Firing = SubResource( 2 )
@@ -130,7 +130,7 @@ row = 4
 x_direction = -1
 
 [node name="Cannon" parent="Armaments/Cannon4" index="1"]
-flip_v = true
+flip_h = true
 
 [node name="AnimationPlayer" parent="Armaments/Cannon4" index="2"]
 anims/Firing = SubResource( 3 )
@@ -141,7 +141,7 @@ row = 5
 x_direction = -1
 
 [node name="Cannon" parent="Armaments/Cannon5" index="1"]
-flip_v = true
+flip_h = true
 
 [node name="AnimationPlayer" parent="Armaments/Cannon5" index="2"]
 anims/Firing = SubResource( 4 )
@@ -152,7 +152,7 @@ row = 6
 x_direction = -1
 
 [node name="Cannon" parent="Armaments/Cannon6" index="1"]
-flip_v = true
+flip_h = true
 
 [node name="AnimationPlayer" parent="Armaments/Cannon6" index="2"]
 anims/Firing = SubResource( 5 )

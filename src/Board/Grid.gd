@@ -48,10 +48,16 @@ func spawn_dice() -> void:
 
 func move_dice(direction : int) -> void:
 	var destination = dice_position + POS.directions[direction]
-	if is_in_grid(destination):
-		if get_tile_state(destination) != tile_states.blocked:
+	if is_in_grid(destination) and current_dice != null:
+		var t_state = get_tile_state(destination)
+		if t_state == tile_states.free:
 			yield(current_dice.roll(direction), "completed")
 			dice_position = destination
+		elif t_state == tile_states.broken:
+			yield(current_dice.roll(direction), "completed")
+			set_tile_state(destination, tile_states.free)
+			current_dice.consume()
+			current_dice = null
 	elif destination.x == loading_edge:
 		yield(current_dice.slide(direction), "completed")
 		dice_position = destination

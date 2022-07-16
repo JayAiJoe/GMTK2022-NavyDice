@@ -66,6 +66,8 @@ func change_face(curr_state, direction : int):
 func load_and_fire(area : Area2D):
 	if area is Cannon:
 		(area as Cannon).fire(Vector2(get_face_up(), get_face_up()), get_face_up())
-		emit_signal("consumed")
-		queue_free()
+		consume()
 
+func consume():
+	emit_signal("consumed")
+	queue_free()
