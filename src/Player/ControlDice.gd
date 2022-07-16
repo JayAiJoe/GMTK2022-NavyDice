@@ -3,8 +3,7 @@ extends Node2D
 class_name ControlDice
 
 var new_pos_ori
-var current_face = 0
-var current_ori = 0
+var dice_state
 
 func _ready():
 	new_pos_ori = {
@@ -38,8 +37,7 @@ func _ready():
 			2:[[3,0],[2,2],[4,0],[5,2]],
 			3:[[5,3],[3,1],[2,3],[4,1]]},
 	}
-	current_face = randi()%6 + 1
-	current_ori = randi()%4
+	dice_state = [randi()%6 + 1, randi()%4 ]
 	
 func _on_ControlDice_area_entered(area: Area2D) -> void:
 	load_and_fire(area)
@@ -49,6 +47,7 @@ func roll(direction : int) -> void:
 	$MoveTween.start()
 	
 	yield($MoveTween,"tween_completed")
+	dice_state = change_face(dice_state, direction)
 	$Faces.frame = get_face_up() - 1
 
 func slide(direction : int) -> void:
@@ -57,13 +56,11 @@ func slide(direction : int) -> void:
 	yield($MoveTween,"tween_completed")
 
 func get_face_up() -> int : 
-	return randi() % 6 + 1
+	return dice_state[0]
 	
-func change_face(current_face : int, current_ori : int, direction : int):
-	return new_pos_ori[current_face][current_ori][direction]
+func change_face(curr_state, direction : int):
+	return new_pos_ori[curr_state[0]][curr_state[1]][direction]
 	
-
-
 func load_and_fire(area : Area2D):
 	if area is Cannon:
 		(area as Cannon).fire(Vector2(get_face_up(), get_face_up()))
