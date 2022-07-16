@@ -2,10 +2,36 @@ extends Node2D
 
 class_name ControlDice
 
+<<<<<<< HEAD
 var new_pos_ori
 var current_face = 0
 var current_ori = 0
+=======
+func _on_ControlDice_area_entered(area: Area2D) -> void:
+	load_and_fire(area)
+>>>>>>> 183e28e827653db7b796ef7f77ccd3df50d9873c
 
+func roll(direction : int) -> void:
+	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.12, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$MoveTween.start()
+	
+	yield($MoveTween,"tween_completed")
+	$Faces.frame = get_face_up() - 1
+
+func slide(direction : int) -> void:
+	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.12, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$MoveTween.start()
+	yield($MoveTween,"tween_completed")
+
+
+	
+func get_face_up() -> int : 
+	return randi() % 6 + 1
+<<<<<<< HEAD
+	
+func change_face(current_face : int, current_ori : int, direction : int):
+	return new_pos_ori[current_face][current_ori][direction]
+	
 func _ready():
 	new_pos_ori = {
 		1: {0:[[4,0],[2,0],[3,0],[5,0]],
@@ -38,34 +64,17 @@ func _ready():
 			2:[[3,0],[2,2],[4,0],[5,2]],
 			3:[[5,3],[3,1],[2,3],[4,1]]},
 	}
+	
 	current_face = randi()%6 + 1
 	current_ori = randi()%4
-	
-func _on_ControlDice_area_entered(area: Area2D) -> void:
-	load_and_fire(area)
-
-func roll(direction : int) -> void:
-	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.12, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	$MoveTween.start()
-	
-	yield($MoveTween,"tween_completed")
-	$Faces.frame = get_face_up() - 1
-
-func slide(direction : int) -> void:
-	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.12, Tween.TRANS_LINEAR, Tween.EASE_OUT)
-	$MoveTween.start()
-	yield($MoveTween,"tween_completed")
-
-func get_face_up() -> int : 
-	return randi() % 6 + 1
-	
-func change_face(current_face : int, current_ori : int, direction : int):
-	return new_pos_ori[current_face][current_ori][direction]
-	
-
+	print(change_face(1,1,1))
+=======
 
 func load_and_fire(area : Area2D):
 	if area is Cannon:
 		(area as Cannon).fire(Vector2(get_face_up(), get_face_up()))
 		queue_free()
 
+
+
+>>>>>>> 183e28e827653db7b796ef7f77ccd3df50d9873c
