@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Cannon",
+"language": "GDScript",
+"path": "res://src/Items/Cannon.gd"
+}, {
 "base": "Node2D",
 "class": "ControlDice",
 "language": "GDScript",
@@ -18,10 +23,17 @@ _global_script_classes=[ {
 "class": "Grid",
 "language": "GDScript",
 "path": "res://src/Board/Grid.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Projectile",
+"language": "GDScript",
+"path": "res://src/Items/Projectile.gd"
 } ]
 _global_script_class_icons={
+"Cannon": "",
 "ControlDice": "",
-"Grid": ""
+"Grid": "",
+"Projectile": ""
 }
 
 [application]

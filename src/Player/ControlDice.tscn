@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/Player/ControlDice.gd" type="Script" id=2]
 [ext_resource path="res://assets/dice_faces.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 16, 16 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -41,8 +44,12 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="ControlDice" type="Node2D"]
+[node name="ControlDice" type="Area2D"]
 script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 32, 32 )
+shape = SubResource( 8 )
 
 [node name="MoveTween" type="Tween" parent="."]
 
@@ -51,3 +58,5 @@ scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "faces"
 centered = false
+
+[connection signal="area_entered" from="." to="." method="_on_ControlDice_area_entered"]

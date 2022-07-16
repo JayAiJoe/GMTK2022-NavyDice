@@ -6,6 +6,9 @@ var new_pos_ori
 var current_face = 0
 var current_ori = 0
 
+func _on_ControlDice_area_entered(area: Area2D) -> void:
+	load_and_fire(area)
+
 func roll(direction : int) -> void:
 	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.12, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$MoveTween.start()
@@ -17,6 +20,8 @@ func slide(direction : int) -> void:
 	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.12, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$MoveTween.start()
 	yield($MoveTween,"tween_completed")
+
+
 	
 func get_face_up() -> int : 
 	return randi() % 6 + 1
@@ -60,3 +65,9 @@ func _ready():
 	current_face = randi()%6 + 1
 	current_ori = randi()%4
 	print(change_face(1,1,1))
+
+func load_and_fire(area : Area2D):
+	if area is Cannon:
+		(area as Cannon).fire(Vector2(get_face_up(), get_face_up()))
+		queue_free()
+
