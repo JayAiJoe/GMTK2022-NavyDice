@@ -77,6 +77,10 @@ func load_and_fire(area : Area2D):
 		(area as Cannon).fire(Vector2(get_face_up(), get_face_up()), get_face_up())
 		consume()
 
+func fall():
+	$RollAnimation.play("Fall")
+	
+
 func consume():
 	emit_signal("consumed")
 	queue_free()

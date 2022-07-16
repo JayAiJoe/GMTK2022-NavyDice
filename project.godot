@@ -39,12 +39,13 @@ _global_script_class_icons={
 [application]
 
 config/name="NavyDice"
-run/main_scene="res://src/Board/MainGame.tscn"
+run/main_scene="res://src/Screens/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 POS="*res://src/Autoload/POS.gd"
+SceneTracker="*res://src/Autoload/SceneTracker.gd"
 
 [display]
 

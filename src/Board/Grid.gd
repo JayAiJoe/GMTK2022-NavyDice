@@ -55,7 +55,7 @@ func move_dice(direction : int) -> void:
 		elif t_state == tile_states.broken:
 			yield(current_dice.roll(direction), "completed")
 			set_tile_state(destination, tile_states.free)
-			current_dice.consume()
+			current_dice.consume() #fall animation
 			current_dice = null
 	elif destination.x == loading_edge:
 		yield(current_dice.slide(direction), "completed")

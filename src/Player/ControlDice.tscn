@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/Player/ControlDice.gd" type="Script" id=2]
 [ext_resource path="res://assets/dice_faces.png" type="Texture" id=3]
@@ -43,6 +43,49 @@ animations = [ {
 "name": "faces",
 "speed": 5.0
 } ]
+
+[sub_resource type="Animation" id=13]
+resource_name = "Fall"
+length = 0.12
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("OldFaces:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.45, 0.45 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OldFaces:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.184314, 0.176471, 0.176471, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.12 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "consume"
+} ]
+}
 
 [sub_resource type="Animation" id=9]
 resource_name = "RollNorth"
@@ -274,21 +317,22 @@ shape = SubResource( 8 )
 [node name="MoveTween" type="Tween" parent="."]
 
 [node name="OldFaces" type="AnimatedSprite" parent="."]
-position = Vector2( 64, 0 )
-scale = Vector2( 1e-05, 0.5 )
+scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
 animation = "faces"
 centered = false
 
 [node name="NewFaces" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 1e-05, 0.5 )
 frames = SubResource( 1 )
 animation = "faces"
 frame = 1
 centered = false
 
 [node name="RollAnimation" type="AnimationPlayer" parent="."]
+autoplay = "RollEast"
 playback_speed = 0.8
+anims/Fall = SubResource( 13 )
 anims/RollEast = SubResource( 9 )
 anims/RollNorth = SubResource( 12 )
 anims/RollSouth = SubResource( 11 )
