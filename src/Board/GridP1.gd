@@ -15,4 +15,3 @@ func _input(event: InputEvent) -> void:
 			elif event.is_action_pressed("P1_down"):
 				moving = true
 				move_dice(3)
-		

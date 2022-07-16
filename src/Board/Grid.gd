@@ -12,9 +12,14 @@ var current_dice  = null
 var dice_position : Vector2 = Vector2(0, 0)
 
 var _grid = []
+var _e_grid = []
 var moving : bool = false
 
 var loading_edge = 6
+
+#========Statuses and Effects
+var statuses
+var equipment_db
 
 func _ready() -> void:
 	for y in (POS.grid_rows):
@@ -22,8 +27,9 @@ func _ready() -> void:
 		for x in range(POS.grid_columns):
 			row.append(tile_states.free)
 		_grid.append(row)
+		_e_grid.append(row)
 	spawn_dice()
-		
+	
 
 func _on_RefillTimer_timeout() -> void:
 	spawn_dice()
@@ -61,7 +67,6 @@ func move_dice(direction : int) -> void:
 		yield(current_dice.slide(direction), "completed")
 		dice_position = destination
 	moving = false
-	
 
 func is_in_grid(coordinates : Vector2) -> bool:
 	if coordinates.x >= 0 and coordinates.x < POS.grid_columns:
@@ -80,6 +85,9 @@ func reset_dice():
 	moving = false
 	dice_position = Vector2.ZERO
 
+#=================EQUIPMENTS===============
+func add_equipment(equipment, pos : Vector2, ori : int):
+	pass
 
 
 

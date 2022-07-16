@@ -330,7 +330,6 @@ frame = 1
 centered = false
 
 [node name="RollAnimation" type="AnimationPlayer" parent="."]
-autoplay = "RollEast"
 playback_speed = 0.8
 anims/Fall = SubResource( 13 )
 anims/RollEast = SubResource( 9 )

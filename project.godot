@@ -46,6 +46,7 @@ config/icon="res://icon.png"
 
 POS="*res://src/Autoload/POS.gd"
 SceneTracker="*res://src/Autoload/SceneTracker.gd"
+Databases="*res://src/Autoload/Databases.gd"
 
 [display]
 
