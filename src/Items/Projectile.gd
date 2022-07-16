@@ -7,6 +7,10 @@ var speed := 700.0
 var acceleration := 0.0 #25.0
 var max_speed := 1500.0
 
+var gooey = false
+var icey = false
+var aoe = -1
+
 func set_target(coordinates : Vector2) -> void:
 	target = coordinates
 

@@ -38,12 +38,13 @@ func _ready():
 	
 	#=======================EQUIPMENTS==================
 	equipment_db = {
-		0:[],
-		1:[],
-		2:[],
-		3:[],
-		4:[],
-		5:[],
-		6:[],
-		7:[]
+		0:{"name":"conveyor belt"},
+		1:{"name":"double cannon"},
+		2:{"name":"loose dice"},
+		3:{"name":"block"},
+		4:{"name":"flipper"},
+		5:{"name":"gooey"},
+		6:{"name":"ice"},
+		7:{"name":"protect"},
+		8:{"name":"haste"}
 	}
