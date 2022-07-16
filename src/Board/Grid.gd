@@ -45,7 +45,6 @@ func spawn_dice() -> void:
 	current_dice = dice
 	add_child(dice)
 	
-
 func move_dice(direction : int) -> void:
 	var destination = dice_position + POS.directions[direction]
 	if is_in_grid(destination) and current_dice != null:
@@ -62,6 +61,7 @@ func move_dice(direction : int) -> void:
 		yield(current_dice.slide(direction), "completed")
 		dice_position = destination
 	moving = false
+	
 
 func is_in_grid(coordinates : Vector2) -> bool:
 	if coordinates.x >= 0 and coordinates.x < POS.grid_columns:
