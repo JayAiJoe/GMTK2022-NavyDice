@@ -1,7 +1,165 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Board/GridP2.gd" type="Script" id=1]
 [ext_resource path="res://src/Board/Grid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Items/Cannon.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Firing"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cannon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 32, 32 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Firing"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cannon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 32, 32 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Firing"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cannon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 32, 32 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Firing"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cannon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 32, 32 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 32 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Firing"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Cannon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 32, 32 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 32 ) ]
+}
 
 [node name="GridP2" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+
+[node name="Armaments" type="Node2D" parent="." index="3"]
+
+[node name="Cannon" parent="Armaments" index="0" instance=ExtResource( 3 )]
+position = Vector2( -64, 0 )
+row = 1
+x_direction = -1
+
+[node name="Cannon" parent="Armaments/Cannon" index="1"]
+flip_v = true
+
+[node name="Cannon2" parent="Armaments" index="1" instance=ExtResource( 3 )]
+position = Vector2( -64, 64 )
+row = 2
+x_direction = -1
+
+[node name="Cannon" parent="Armaments/Cannon2" index="1"]
+flip_v = true
+
+[node name="AnimationPlayer" parent="Armaments/Cannon2" index="2"]
+anims/Firing = SubResource( 1 )
+
+[node name="Cannon3" parent="Armaments" index="2" instance=ExtResource( 3 )]
+position = Vector2( -64, 128 )
+row = 3
+x_direction = -1
+
+[node name="Cannon" parent="Armaments/Cannon3" index="1"]
+flip_v = true
+
+[node name="AnimationPlayer" parent="Armaments/Cannon3" index="2"]
+anims/Firing = SubResource( 2 )
+
+[node name="Cannon4" parent="Armaments" index="3" instance=ExtResource( 3 )]
+position = Vector2( -64, 192 )
+row = 4
+x_direction = -1
+
+[node name="Cannon" parent="Armaments/Cannon4" index="1"]
+flip_v = true
+
+[node name="AnimationPlayer" parent="Armaments/Cannon4" index="2"]
+anims/Firing = SubResource( 3 )
+
+[node name="Cannon5" parent="Armaments" index="4" instance=ExtResource( 3 )]
+position = Vector2( -64, 256 )
+row = 5
+x_direction = -1
+
+[node name="Cannon" parent="Armaments/Cannon5" index="1"]
+flip_v = true
+
+[node name="AnimationPlayer" parent="Armaments/Cannon5" index="2"]
+anims/Firing = SubResource( 4 )
+
+[node name="Cannon6" parent="Armaments" index="5" instance=ExtResource( 3 )]
+position = Vector2( -64, 320 )
+row = 6
+x_direction = -1
+
+[node name="Cannon" parent="Armaments/Cannon6" index="1"]
+flip_v = true
+
+[node name="AnimationPlayer" parent="Armaments/Cannon6" index="2"]
+anims/Firing = SubResource( 5 )
+
+[editable path="Armaments/Cannon"]
+[editable path="Armaments/Cannon2"]
+[editable path="Armaments/Cannon3"]
+[editable path="Armaments/Cannon4"]
+[editable path="Armaments/Cannon5"]
+[editable path="Armaments/Cannon6"]
