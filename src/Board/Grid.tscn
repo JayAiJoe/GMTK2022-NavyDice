@@ -56,4 +56,9 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 position = Vector2( 192, 192 )
 shape = SubResource( 2 )
 
+[node name="RefillTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_Grid_body_entered"]
+[connection signal="timeout" from="RefillTimer" to="." method="_on_RefillTimer_timeout"]

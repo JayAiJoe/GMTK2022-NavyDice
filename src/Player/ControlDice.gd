@@ -2,6 +2,8 @@ extends Node2D
 
 class_name ControlDice
 
+signal consumed
+
 var new_pos_ori
 var dice_state
 var anim_dir
@@ -72,6 +74,7 @@ func change_face(curr_state, direction : int):
 	
 func load_and_fire(area : Area2D):
 	if area is Cannon:
-		(area as Cannon).fire(Vector2(get_face_up(), get_face_up()))
+		(area as Cannon).fire(Vector2(get_face_up(), get_face_up()), get_face_up())
+		emit_signal("consumed")
 		queue_free()
 
