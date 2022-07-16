@@ -37,8 +37,12 @@ func _ready() -> void:
 
 func move_dice(direction : int) -> void:
 	var destination = dice_position + POS.directions[direction]
-	if is_in_grid(destination) and get_tile_state(destination) != tile_states.blocked:
-		yield(current_dice.roll(direction), "completed")
+	if is_in_grid(destination):
+		if get_tile_state(destination) != tile_states.blocked:
+			yield(current_dice.roll(direction), "completed")
+			dice_position = destination
+	elif destination.x == 6:
+		yield(current_dice.slide(direction), "completed")
 		dice_position = destination
 	moving = false
 
