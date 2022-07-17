@@ -28,6 +28,9 @@ func _ready() -> void:
 			row.append(tile_states.free)
 		_grid.append(row)
 		_grid_effects.append(row)
+	
+	for cannon in $Armaments.get_children():
+		cannon.connect("fired", self, "refresh_cannons")
 		
 	spawn_dice()
 
@@ -45,12 +48,12 @@ func start_refill_timer():
 	$RefillTimer.start()
 
 func spawn_dice() -> void:
-	reset_dice()
 	var dice = ControlDice.instance()
 	dice.connect("consumed", self, "start_refill_timer")
 	dice.connect("wrong", self, "wrong_dice")
 	current_dice = dice
 	add_child(dice)
+	reset_dice()
 	
 func move_dice(direction : int) -> void:
 	var destination = dice_position + POS.directions[direction]
@@ -65,11 +68,14 @@ func move_dice(direction : int) -> void:
 			set_tile_state(destination, tile_states.free)
 			current_dice.consume() #fall animation
 			current_dice = null
+		moving = false
 			
 	elif destination.x == loading_edge:
 		yield(current_dice.slide(direction), "completed")
 		#dice_position = destination
-	moving = false
+		
+	else:
+		moving = false
 
 func is_in_grid(coordinates : Vector2) -> bool:
 	if coordinates.x >= 0 and coordinates.x < POS.grid_columns:
@@ -87,6 +93,7 @@ func wrong_dice():
 	yield($PenaltyTimer, "timeout")
 	current_dice.wrong()
 	yield(current_dice.slide(undo_dir), "completed")
+	moving = false
 	#dice_position = destination
 
 func get_tile_state(coordinates : Vector2) -> int:
@@ -108,3 +115,7 @@ func receive_projectile(projectile : Projectile):
 func reset_dice():
 	moving = false
 	dice_position = Vector2.ZERO
+
+func refresh_cannons():
+	for cannon in $Armaments.get_children():
+		(cannon as Cannon).randomdice()
