@@ -2,6 +2,7 @@ extends Node
 
 var next_dice_state
 var grids
+enum tile_effects {free, ice, slime, fire}
 
 func _ready():
 	next_dice_state = {
@@ -37,3 +38,5 @@ func _ready():
 	}
 	
 	grids = {1:null,2:null}
+	
+	

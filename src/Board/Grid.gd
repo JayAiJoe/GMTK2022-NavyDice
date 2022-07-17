@@ -2,8 +2,8 @@ extends Node2D
 
 class_name Grid
 
-enum tile_states{free, broken, blocked}
-enum tile_effects{free, icy, gooey, burning}
+enum tile_states {free, broken, blocked}
+var tile_effects
 
 signal move
 signal hit(id, damage)
@@ -20,16 +20,16 @@ var moving : bool = false
 
 var loading_edge = 6
 
-var hull_hp
 
 func _ready() -> void:
+	tile_effects = Databases.tile_effects
 	randomize()
 	for y in (POS.grid_rows):
 		var row = []
 		for x in range(POS.grid_columns):
 			row.append(tile_states.free)
 		_grid.append(row)
-		_grid_effects.append(row)
+		_grid_effects.append([]+row)
 	
 	for cannon in $Armaments.get_children():
 		cannon.connect("fired", self, "refresh_cannons")
@@ -74,8 +74,7 @@ func move_dice(direction : int) -> void:
 			
 	elif destination.x == loading_edge:
 		yield(current_dice.slide(direction), "completed")
-		#dice_position = destination
-		
+	
 	else:
 		moving = false
 
@@ -110,9 +109,32 @@ func get_tile_effects(coordinates : Vector2) -> int:
 	
 func set_tile_effects(coordinates : Vector2, effect : int) -> void:
 	_grid_effects[coordinates.y][coordinates.x] = effect
+	$TileMap_Effects.set_cellv(coordinates, effect-1)
+	
+func inflict_tile_effects(coordinates : Vector2, effect : int) -> void:
+	match effect:
+		tile_effects.ice:
+			for i in range(-1,2):
+				set_tile_effects(coordinates + Vector2(i,0), effect)
+				set_tile_effects(coordinates + Vector2(0,i), effect)
+			
+		tile_effects.slime:
+			for i in range(-1,2):
+				for j in range(-1,2):
+					set_tile_effects(coordinates + Vector2(i,j), effect)
+			
+		tile_effects.fire:
+			if randi()%2==0: #vertical
+				for i in range(-1,2):
+					set_tile_effects(coordinates + Vector2(i,0), effect)
+			else:
+				for i in range(-1,2):
+					set_tile_effects(coordinates + Vector2(0,i), effect)
 	
 func receive_projectile(projectile : Projectile):
 	emit_signal("hit", grid_id, projectile.damage_value)
+	if projectile.effect != tile_effects.free:
+		inflict_tile_effects(projectile.target_tile, projectile.effect)
 	
 func reset_dice():
 	moving = false

@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 class_name Projectile
 
+var target_tile
 var target_coord : Vector2 = Vector2(-1, -1)
 var target_grid
 var effect
