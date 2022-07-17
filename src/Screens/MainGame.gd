@@ -21,7 +21,11 @@ func update_ships(ship_id : int, damage : int) -> void:
 	else:
 		P2_hp = max(0, P2_hp - damage)
 		P1_hp = min(max_health, P1_hp + (damage / 2.0))
-	war_bar.set_value(calculate_ratio())
+	
+	var rat = calculate_ratio()
+	var sig = sigmoid(rat)
+	war_bar.set_value(sig)
+	print("Ratio " + str(rat) + " Sidmoig : " + str(sig))
 	print("Ship 1: " + str(P1_hp) + " Ship 2 : " + str(P2_hp))
 
 func reset_health() -> void:
@@ -32,4 +36,7 @@ func calculate_ratio() -> float:
 	if P1_hp + P2_hp != 0:
 		return P1_hp / (P1_hp + P2_hp)
 	return 0.5
-	
+
+func sigmoid(x : float) -> float:
+	x = x*8 -4
+	return 1/(1+exp(-x))
