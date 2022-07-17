@@ -35,7 +35,12 @@ func end_game(ship_id : int) -> void:
 	self.paused = true
 	menu.rect_size = Vector2(400, 70)
 	resume.visible = false
-	interface_title.text = "Player %s Wins" % str(ship_id)
+	if ship_id == 2:
+		interface_title.text = "The WASD\nPirates win!"
+	else:
+		interface_title.text = "The ARRRRow\nPirates win!"
+		
+
 
 
 func _on_Exit_button_up() -> void:

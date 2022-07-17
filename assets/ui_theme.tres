@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=4 format=2]
 
-[ext_resource path="res://assets/montserrat_extrabold.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/pixel_pirate.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.890196, 0.411765, 0.337255, 1 )
@@ -15,9 +15,12 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="DynamicFont" id=2]
+size = 32
 font_data = ExtResource( 1 )
 
 [resource]
 default_font = SubResource( 2 )
+Button/colors/font_color = Color( 0.0823529, 0.0980392, 0.0627451, 1 )
 Button/styles/normal = SubResource( 1 )
+Label/colors/font_color = Color( 0.0823529, 0.0980392, 0.0627451, 1 )
 VBoxContainer/constants/separation = 20
