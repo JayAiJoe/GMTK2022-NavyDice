@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grid_template.png-ed7e1dccbd832053a78c4ef3fb9a973d.stex"
+path="res://.import/boa2.png-0acfc888430b19f22f76ba1551dae69e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/grid_template.png"
-dest_files=[ "res://.import/grid_template.png-ed7e1dccbd832053a78c4ef3fb9a973d.stex" ]
+source_file="res://assets/boa2.png"
+dest_files=[ "res://.import/boa2.png-0acfc888430b19f22f76ba1551dae69e.stex" ]
 
 [params]
 

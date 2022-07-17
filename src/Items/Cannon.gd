@@ -30,14 +30,16 @@ func randomdice() -> void:
 	match value:
 		1:
 			powerup = Databases.tile_effects.fire
-		3:
-			powerup = Databases.tile_effects.free
-			if randi()%10<3:
-				continue #roll for what powerup
 		2:
 			powerup = Databases.tile_effects.ice
 			if randi()%2==0:
 				powerup = Databases.tile_effects.slime
+		3:
+			powerup = Databases.tile_effects.free
+			if randi()%10<5:
+				powerup = Databases.tile_effects.ice
+				if randi()%2==0:
+					powerup = Databases.tile_effects.slime
 	
 	var c = Color(1, 1, 1)
 	match powerup:

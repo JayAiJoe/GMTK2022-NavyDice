@@ -133,7 +133,7 @@ position = Vector2( 192, 192 )
 shape = SubResource( 2 )
 
 [node name="DiceVisualizer" parent="." instance=ExtResource( 10 )]
-position = Vector2( 96, 448 )
+position = Vector2( 96, 444 )
 
 [node name="Armaments" type="Node2D" parent="."]
 

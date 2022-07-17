@@ -7,32 +7,26 @@
 extents = Vector2( 16, 16 )
 
 [sub_resource type="AtlasTexture" id=14]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=15]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=16]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=17]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=18]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 256, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=19]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 320, 0, 64, 64 )
 
@@ -306,14 +300,15 @@ shape = SubResource( 8 )
 [node name="MoveTween" type="Tween" parent="."]
 
 [node name="OldFaces" type="AnimatedSprite" parent="."]
+scale = Vector2( 1, 1e-05 )
 frames = SubResource( 1 )
 animation = "faces"
 centered = false
 
 [node name="NewFaces" type="AnimatedSprite" parent="."]
-scale = Vector2( 1e-05, 1 )
 frames = SubResource( 1 )
 animation = "faces"
+frame = 2
 centered = false
 
 [node name="RollAnimation" type="AnimationPlayer" parent="."]
