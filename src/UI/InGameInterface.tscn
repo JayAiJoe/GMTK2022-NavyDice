@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/font_title.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/ChangeSceneButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/log bg.png" type="Texture" id=3]
 [ext_resource path="res://assets/ui_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/UI/InGameInterface.gd" type="Script" id=5]
+[ext_resource path="res://src/UI/MusicButton.tscn" type="PackedScene" id=6]
 
 [node name="InGameInterface" type="Control"]
 pause_mode = 2
@@ -41,26 +43,43 @@ anchor_bottom = 1.0
 margin_left = -200.0
 margin_top = -320.0
 margin_right = 200.0
-margin_bottom = -160.0
+margin_bottom = -70.0
+rect_min_size = Vector2( 0, 250 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Resume" type="Button" parent="PauseOverlay/Menu"]
+[node name="Resume" type="TextureButton" parent="PauseOverlay/Menu"]
 margin_right = 400.0
 margin_bottom = 70.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="Label" type="Label" parent="PauseOverlay/Menu/Resume"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 text = "Resume"
+align = 1
+valign = 1
+
+[node name="MusicButton" parent="PauseOverlay/Menu" instance=ExtResource( 6 )]
+margin_top = 90.0
+margin_bottom = 160.0
 
 [node name="Exit" parent="PauseOverlay/Menu" instance=ExtResource( 2 )]
-margin_top = 90.0
+margin_top = 180.0
 margin_right = 400.0
-margin_bottom = 160.0
+margin_bottom = 250.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Exit"
 next_scene_path = "res://src/Screens/MainMenu.tscn"
+
+[node name="Label" parent="PauseOverlay/Menu/Exit" index="0"]
+text = "Exit"
 
 [connection signal="button_up" from="PauseOverlay/Menu/Resume" to="." method="_on_Resume_button_up"]
 [connection signal="button_up" from="PauseOverlay/Menu/Exit" to="." method="_on_Exit_button_up"]
+
+[editable path="PauseOverlay/Menu/Exit"]

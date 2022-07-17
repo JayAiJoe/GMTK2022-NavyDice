@@ -10,6 +10,9 @@ var sound_paths = {
 	"thud3" : preload("res://assets/sounds/thud3.mp3")
 }
 
+func _ready() -> void:
+	position.x = 800
+	
 func play_sound(sound : String, volume : int) -> void:
 	volume_db = -15 + 5 * volume
 	set_stream(sound_paths[sound])

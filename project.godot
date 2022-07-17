@@ -48,6 +48,7 @@ POS="*res://src/Autoload/POS.gd"
 SceneTracker="*res://src/Autoload/SceneTracker.gd"
 Databases="*res://src/Autoload/Databases.gd"
 DjBeats="*res://src/Autoload/DJBeats.gd"
+BgMusic="*res://src/Autoload/BGMusic.gd"
 
 [display]
 

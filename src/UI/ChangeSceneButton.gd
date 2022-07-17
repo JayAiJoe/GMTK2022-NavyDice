@@ -1,5 +1,5 @@
 tool
-extends Button
+extends TextureButton
 
 export(String, FILE) var next_scene_path := ""
 
