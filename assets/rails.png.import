@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/paper bg.png-79052c93e424ec913d1522f08e2035ea.stex"
+path="res://.import/rails.png-bb292791de41066410dafd1128e35427.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/paper bg.png"
-dest_files=[ "res://.import/paper bg.png-79052c93e424ec913d1522f08e2035ea.stex" ]
+source_file="res://assets/rails.png"
+dest_files=[ "res://.import/rails.png-bb292791de41066410dafd1128e35427.stex" ]
 
 [params]
 
