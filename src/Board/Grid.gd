@@ -62,15 +62,23 @@ func move_dice(direction : int) -> void:
 	var destination = dice_position + POS.directions[direction]
 	if is_in_grid(destination) and current_dice != null:
 		var t_state = get_tile_state(destination)
+		var t_effect = get_tile_effect(destination)
+		print("teffect: ",t_effect)
 		if t_state == tile_states.free:
 			yield(current_dice.roll(direction), "completed")
 			dice_position = destination
 			
-		elif t_state == tile_states.broken:
-			yield(current_dice.roll(direction), "completed")
-			set_tile_state(destination, tile_states.free)
-			current_dice.consume() #fall animation
-			current_dice = null
+			#check ice or slime
+			current_dice.speed_mult = 1
+			if t_effect == Databases.tile_effects.slime:
+				current_dice.speed_mult = 0.35
+			elif t_effect == Databases.tile_effects.ice:
+				pass
+			elif t_effect == Databases.tile_effects.fire:
+				print(destination)
+				set_tile_effect(destination, tile_states.free)
+				current_dice.consume() #fall animation
+				current_dice = null
 		moving = false
 			
 	elif destination.x == loading_edge:
@@ -105,39 +113,39 @@ func set_tile_state(coordinates : Vector2, state : int) -> void:
 	_grid[coordinates.y][coordinates.x] = state
 	$TileMap.set_cell(coordinates.x, coordinates.y, state)
 	
-func get_tile_effects(coordinates : Vector2) -> int:
+func get_tile_effect(coordinates : Vector2) -> int:
 	return _grid_effects[coordinates.y][coordinates.x]
 	
-func set_tile_effects(coordinates : Vector2, effect : int) -> void:
+func set_tile_effect(coordinates : Vector2, effect : int) -> void:
 	_grid_effects[coordinates.y][coordinates.x] = effect
+	$TileMap_Effects.set_cellv(coordinates, -1)
 	if effect == Databases.tile_effects.fire:
 		var new_fire = FireTile.instance()
 		new_fire.position = POS.grid_to_global(coordinates,Vector2(32,32))
 		add_child(new_fire)
-		print(coordinates)
-		print(new_fire.position)
-	else:
+	elif effect in [Databases.tile_effects.ice, Databases.tile_effects.slime]:
 		$TileMap_Effects.set_cellv(coordinates, effect-1)
+		
 	
 func inflict_tile_effects(coordinates : Vector2, effect : int) -> void:
 	match effect:
 		tile_effects.ice:
 			for i in range(-1,2):
-				set_tile_effects(coordinates + Vector2(i,0), effect)
-				set_tile_effects(coordinates + Vector2(0,i), effect)
+				set_tile_effect(coordinates + Vector2(i,0), effect)
+				set_tile_effect(coordinates + Vector2(0,i), effect)
 			
 		tile_effects.slime:
 			for i in range(-1,2):
 				for j in range(-1,2):
-					set_tile_effects(coordinates + Vector2(i,j), effect)
+					set_tile_effect(coordinates + Vector2(i,j), effect)
 			
 		tile_effects.fire:
 			if randi()%2==0: #vertical
 				for i in range(-1,2):
-					set_tile_effects(coordinates + Vector2(i,0), effect)
+					set_tile_effect(coordinates + Vector2(i,0), effect)
 			else:
 				for i in range(-1,2):
-					set_tile_effects(coordinates + Vector2(0,i), effect)
+					set_tile_effect(coordinates + Vector2(0,i), effect)
 	
 func receive_projectile(projectile : Projectile):
 	emit_signal("hit", grid_id, projectile.damage_value)
