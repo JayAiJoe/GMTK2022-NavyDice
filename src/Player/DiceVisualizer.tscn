@@ -4,32 +4,26 @@
 [ext_resource path="res://src/Player/DiceVisualizer.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 256, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 320, 0, 64, 64 )
 
@@ -45,17 +39,17 @@ animations = [ {
 script = ExtResource( 2 )
 
 [node name="Up" type="AnimatedSprite" parent="."]
-position = Vector2( 96, 32 )
+position = Vector2( 96, 31 )
 frames = SubResource( 7 )
 
 [node name="Down" type="AnimatedSprite" parent="."]
-position = Vector2( 96, 96 )
+position = Vector2( 96, 100 )
 frames = SubResource( 7 )
 
 [node name="Left" type="AnimatedSprite" parent="."]
-position = Vector2( 32, 96 )
+position = Vector2( 31, 100 )
 frames = SubResource( 7 )
 
 [node name="Right" type="AnimatedSprite" parent="."]
-position = Vector2( 160, 96 )
+position = Vector2( 161, 100 )
 frames = SubResource( 7 )

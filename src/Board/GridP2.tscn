@@ -14,7 +14,7 @@ tile_data = PoolIntArray( 65535, 536870915, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 
 scale = Vector2( 1.00239, 1 )
 
 [node name="DiceVisualizer" parent="." index="3"]
-position = Vector2( 93.0348, 441.024 )
+position = Vector2( 93.0348, 440.032 )
 
 [node name="Cannon" parent="Armaments" index="0"]
 position = Vector2( -128, 0 )
