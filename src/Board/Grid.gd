@@ -3,7 +3,7 @@ extends Node2D
 class_name Grid
 
 enum tile_states{free, broken, blocked}
-enum equip_type{free, fill, blocked, trigger, push}
+enum tile_effects{free, icy, gooey, burning}
 
 signal move
 
@@ -20,10 +20,7 @@ var loading_edge = 6
 var hull_hp
 
 #========Statuses and Effects
-var _equip_grid = []
-var _equip_id_grid = []
-var statuses = []
-var equipments = []
+var _grid_effects = []
 
 func _ready() -> void:
 	randomize()
@@ -32,12 +29,7 @@ func _ready() -> void:
 		for x in range(POS.grid_columns):
 			row.append(tile_states.free)
 		_grid.append(row)
-		_equip_grid.append(row)
-		
-		row = []
-		for x in range(POS.grid_columns):
-			row.append(-1)
-		_equip_id_grid.append(row)
+		_grid_effects.append(row)
 		
 	spawn_dice()
 	
@@ -72,19 +64,12 @@ func move_dice(direction : int) -> void:
 			yield(current_dice.roll(direction), "completed")
 			dice_position = destination
 			
-			#check equip triggers
-			if get_equip_type(destination) == equip_type.trigger:
-				equipments[get_equip_id(destination)]["number"] += 1
-			
 		elif t_state == tile_states.broken:
 			yield(current_dice.roll(direction), "completed")
 			set_tile_state(destination, tile_states.free)
 			current_dice.consume() #fall animation
 			current_dice = null
 			
-			#check fill equips
-			if get_equip_type(destination) == equip_type.fill:
-				equipments[get_equip_id(destination)]["number"] += 1
 	elif destination.x == loading_edge:
 		yield(current_dice.slide(direction), "completed")
 		dice_position = destination
@@ -115,55 +100,9 @@ func set_tile_state(coordinates : Vector2, state : int) -> void:
 	_grid[coordinates.y][coordinates.x] = state
 	$TileMap.set_cell(coordinates.x, coordinates.y, state)
 	
-func get_equip_type(coordinates : Vector2) -> int:
-	return _equip_grid[coordinates.y][coordinates.x]
+func set_tile_effects(coordinates : Vector2) -> void:
+	pass
 	
-func set_equip_type(coordinates : Vector2, state : int) -> void:
-	_equip_grid[coordinates.y][coordinates.x] = state
-	
-func get_equip_id(coordinates : Vector2) -> int:
-	return _equip_id_grid[coordinates.y][coordinates.x]
-	
-func set_equip_id(coordinates : Vector2, state : int) -> void:
-	_equip_id_grid[coordinates.y][coordinates.x] = state
-
 func reset_dice():
 	moving = false
 	dice_position = Vector2.ZERO
-
-#=================EQUIPMENTS===============
-func add_equipment(equipment_index, topleft : Vector2, ori : int):
-	var i = len(equipments)
-	equipments.append({ "type": equipment_index,
-						"number": 0})
-	var e = Databases.equipment_db[equipment_index]
-	for col in range(len(e)):
-		for row in range(len(e)):
-			set_equip_type(topleft + Vector2(col,row),  e[col][row])
-			set_equip_id(topleft + Vector2(col,row), i)
-
-func activate_equipment(index : int):
-	var equip = equipments[index]
-	match equip["type"]:
-		0:
-			current_dice.slide(equip["number"])
-		1:
-			current_dice.aoe = randi()%4
-		3:
-			current_dice.blocker = true
-		4:
-			current_dice.set_dice_state([equip["number"],0])
-			equipments[index]["number"] = randi()%6 + 1
-		5:
-			current_dice.gooey = equip["number"]
-			reset_equipment(index)
-		6:
-			current_dice.icey = equip["number"]
-			reset_equipment(index)
-
-func reset_equipment(index):
-	equipments[index]["number"] = 0
-	for col in len(_equip_grid):
-		for row in len(_equip_grid):
-			if _equip_id_grid[col][row] == index:
-				set_tile_state(Vector2(col,row), tile_states.broken)

@@ -10,11 +10,11 @@ var value
 var powerup
 
 func _ready():
-	set_value(randi()%6 + 1)
+	randomdice()
 
-func set_value(num : int) -> void:
-	value = num
-	$DicePreview.frame = num-1
+func randomdice() -> void:
+	value = randi()%6 + 1
+	$DicePreview.frame = value-1
 
 func fire(coordinates : Vector2, dice_face : int) -> void:
 	$AnimationPlayer.play("Firing")
@@ -27,5 +27,5 @@ func fire(coordinates : Vector2, dice_face : int) -> void:
 	bullet.speed *= x_direction
 	add_child(bullet)
 	
-	set_value(randi()%6 + 1)
+	randomdice()
 
