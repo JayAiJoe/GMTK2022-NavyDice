@@ -17,6 +17,8 @@ var moving : bool = false
 
 var loading_edge = 6
 
+var hull_hp
+
 #========Statuses and Effects
 var _equip_grid = []
 var _equip_id_grid = []
@@ -37,6 +39,8 @@ func _ready() -> void:
 		_equip_id_grid.append(row)
 		
 	spawn_dice()
+	
+	hull_hp = 20
 
 func _on_RefillTimer_timeout() -> void:
 	spawn_dice()
@@ -130,12 +134,22 @@ func activate_equipment(index : int):
 		0:
 			current_dice.slide(equip["number"])
 		1:
-			pass
+			current_dice.aoe = randi()%4
 		3:
-			pass
+			current_dice.blocker = true
 		4:
-			pass
+			current_dice.set_dice_state([equip["number"],0])
+			equipments[index]["number"] = randi()%6 + 1
 		5:
-			pass
+			current_dice.gooey = equip["number"]
+			reset_equipment(index)
 		6:
-			pass
+			current_dice.icey = equip["number"]
+			reset_equipment(index)
+
+func reset_equipment(index):
+	equipments[index]["number"] = 0
+	for col in len(_equip_grid):
+		for row in len(_equip_grid):
+			if _equip_id_grid[col][row] == index:
+				set_tile_state(Vector2(col,row), tile_states.broken)

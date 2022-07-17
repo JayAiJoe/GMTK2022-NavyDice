@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/floor.jpg-be9fbb376417ad83ba8cf9d14ee16fef.stex"
+path="res://.import/dice_faces_wood.png-fe2d1336b4ce1602af29ba6f3678556a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/floor.jpg"
-dest_files=[ "res://.import/floor.jpg-be9fbb376417ad83ba8cf9d14ee16fef.stex" ]
+source_file="res://assets/dice_faces_wood.png"
+dest_files=[ "res://.import/dice_faces_wood.png-fe2d1336b4ce1602af29ba6f3678556a.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

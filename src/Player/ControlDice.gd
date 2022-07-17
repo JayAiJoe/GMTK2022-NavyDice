@@ -7,6 +7,12 @@ signal consumed
 var dice_state
 var anim_dir
 
+#modifiers
+var blocker = false
+var gooey = 0
+var icey = 0
+var aoe = -1
+
 func _ready():
 	anim_dir = ["RollEast", "RollNorth", "RollWest", "RollSouth"]
 	dice_state = [randi()%6 + 1, 0]
@@ -20,15 +26,17 @@ func roll(direction : int) -> void:
 	$NewFaces.frame = get_face_up() - 1
 	$RollAnimation.play(anim_dir[direction])
 	
+	$NewFaces.show()
 	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.12*1/0.8, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$MoveTween.start()
 	
 	yield($MoveTween,"tween_completed")
 	
 func set_old_faces() -> void:
+	$NewFaces.hide()
 	$OldFaces.frame = get_face_up() - 1
 	$OldFaces.position = Vector2(0,0)
-	$OldFaces.scale = Vector2(0.5, 0.5)
+	$OldFaces.scale = Vector2(1, 1)
 
 func slide(direction : int) -> void:
 	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.12, Tween.TRANS_LINEAR, Tween.EASE_OUT)
@@ -37,6 +45,9 @@ func slide(direction : int) -> void:
 
 func get_face_up() -> int : 
 	return dice_state[0]
+
+func set_dice_state(state) -> void:
+	dice_state = state
 	
 func change_face(curr_state, direction : int):
 	return Databases.next_dice_state[curr_state[0]][curr_state[1]][direction]
@@ -49,7 +60,6 @@ func load_and_fire(area : Area2D):
 func fall():
 	$RollAnimation.play("Fall")
 	
-
 func consume():
 	emit_signal("consumed")
 	queue_free()

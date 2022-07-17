@@ -6,6 +6,12 @@ export var Projectile = preload("res://src/Items/Projectile.tscn")
 export var row = 0
 export var x_direction = 1
 
+var value
+var powerup
+
+func _ready():
+	value = randi()%6 + 1
+
 func fire(coordinates : Vector2, dice_face : int) -> void:
 	$AnimationPlayer.play("Firing")
 	yield($AnimationPlayer, "animation_finished")
