@@ -9,6 +9,8 @@ var dice_state
 var anim_dir
 var last_dir
 
+var speed_mult
+
 #modifiers
 var blocker = false
 var gooey = 0
@@ -20,6 +22,7 @@ func _ready():
 	$OldFaces.self_modulate = Color(1, 1, 1)
 	dice_state = [randi()%6 + 1, 0]
 	$OldFaces.frame = get_face_up() - 1
+	speed_mult = 1
 	
 func _on_ControlDice_area_entered(area: Area2D) -> void:
 	if area is Cannon:
@@ -32,15 +35,17 @@ func roll(direction : int) -> void:
 	last_dir = direction
 	dice_state = change_face(dice_state, direction)
 	$NewFaces.frame = get_face_up() - 1
+	$RollAnimation.playback_speed = speed_mult
 	$RollAnimation.play(anim_dir[direction])
 	
 	$NewFaces.show()
-	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.12*1/0.8, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.15/speed_mult, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$MoveTween.start()
 	
 	yield($MoveTween,"tween_completed")
 	
 func set_old_faces() -> void:
+	$RollAnimation.playback_speed = 1
 	$NewFaces.hide()
 	$OldFaces.frame = get_face_up() - 1
 	$OldFaces.position = Vector2(0,0)
@@ -48,7 +53,7 @@ func set_old_faces() -> void:
 
 func slide(direction : int) -> void:
 	last_dir = direction
-	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.12, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.15/speed_mult, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$MoveTween.start()
 	yield($MoveTween,"tween_completed")
 

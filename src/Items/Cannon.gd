@@ -39,5 +39,4 @@ func fire(coordinates : Vector2, dice_face : int) -> void:
 		bullet.target_grid = 1
 	add_child(bullet)
 	emit_signal("fired")
-	#randomdice()
 
