@@ -21,6 +21,10 @@ var moving : bool = false
 
 var loading_edge = 6
 
+var fires = {}
+
+var ongoing_effects = {}
+
 
 func _ready() -> void:
 	tile_effects = Databases.tile_effects
@@ -63,7 +67,6 @@ func move_dice(direction : int) -> void:
 	if is_in_grid(destination) and current_dice != null:
 		var t_state = get_tile_state(destination)
 		var t_effect = get_tile_effect(destination)
-		print("teffect: ",t_effect)
 		if t_state == tile_states.free:
 			yield(current_dice.roll(direction), "completed")
 			dice_position = destination
@@ -83,7 +86,7 @@ func move_dice(direction : int) -> void:
 			
 	elif destination.x == loading_edge:
 		yield(current_dice.slide(direction), "completed")
-	
+		
 	else:
 		moving = false
 
@@ -124,15 +127,16 @@ func set_tile_effect(coordinates : Vector2, effect : int) -> void:
 		new_fire.position = POS.grid_to_global(coordinates,Vector2(32,32))
 		add_child(new_fire)
 	elif effect in [Databases.tile_effects.ice, Databases.tile_effects.slime]:
+		ongoing_effects[coordinates] = 3
 		$TileMap_Effects.set_cellv(coordinates, effect-1)
-		
-	
+
 func inflict_tile_effects(coordinates : Vector2, effect : int) -> void:
 	match effect:
 		tile_effects.ice:
 			for i in range(-1,2):
 				set_tile_effect(coordinates + Vector2(i,0), effect)
-				set_tile_effect(coordinates + Vector2(0,i), effect)
+				if i != 0:
+					set_tile_effect(coordinates + Vector2(0,i), effect)
 			
 		tile_effects.slime:
 			for i in range(-1,2):
@@ -159,3 +163,11 @@ func reset_dice():
 func refresh_cannons():
 	for cannon in $Armaments.get_children():
 		(cannon as Cannon).randomdice()
+		
+	for tile in ongoing_effects:
+		if ongoing_effects[tile] == 0:
+			set_tile_effect(tile, Databases.tile_effects.free)
+			ongoing_effects.erase(tile)
+		else:
+			ongoing_effects[tile] -= 1
+	print(ongoing_effects)
