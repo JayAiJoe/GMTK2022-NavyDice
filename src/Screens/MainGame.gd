@@ -5,6 +5,7 @@ var P1_hp := 0.0
 var P2_hp := 0.0
 
 onready var war_bar = $UILayer/WarBar
+onready var interface = $UILayer/InGameInterface
 
 
 func _ready() -> void:
@@ -25,6 +26,12 @@ func update_ships(ship_id : int, damage : int) -> void:
 	var rat = calculate_ratio()
 	var sig = sigmoid(rat)
 	war_bar.set_value(sig)
+	
+	if P1_hp == 0:
+		interface.end_game(1)
+	elif P2_hp == 0:
+		interface.end_game(2)
+	
 	print("Ratio " + str(rat) + " Sidmoig : " + str(sig))
 	print("Ship 1: " + str(P1_hp) + " Ship 2 : " + str(P2_hp))
 

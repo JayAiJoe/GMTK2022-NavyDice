@@ -20,3 +20,4 @@ font_data = ExtResource( 1 )
 [resource]
 default_font = SubResource( 2 )
 Button/styles/normal = SubResource( 1 )
+VBoxContainer/constants/separation = 20

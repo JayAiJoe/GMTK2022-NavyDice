@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/font_title.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/UI/ChangeSceneButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/ChangeSceneButton.gd" type="Script" id=3]
+[ext_resource path="res://assets/ui_theme.tres" type="Theme" id=4]
+[ext_resource path="res://src/UI/InGameInterface.gd" type="Script" id=5]
+
+[node name="InGameInterface" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 5 )
+
+[node name="PauseOverlay" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.427451 )
+
+[node name="Label" type="Label" parent="PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -227.0
+margin_right = 300.0
+margin_bottom = -167.0
+custom_fonts/font = ExtResource( 1 )
+text = "Paused"
+align = 1
+
+[node name="Menu" type="VBoxContainer" parent="PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -200.0
+margin_top = -320.0
+margin_right = 200.0
+margin_bottom = -160.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Resume" type="Button" parent="PauseOverlay/Menu"]
+margin_right = 400.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Resume"
+
+[node name="Play" type="Button" parent="PauseOverlay/Menu" instance=ExtResource( 2 )]
+margin_top = 90.0
+margin_right = 400.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Exit"
+script = ExtResource( 3 )
+next_scene_path = "res://src/Screens/MainMenu.tscn"
+
+[connection signal="button_up" from="PauseOverlay/Menu/Resume" to="." method="_on_Resume_button_up"]
+[connection signal="button_up" from="PauseOverlay/Menu/Play" to="PauseOverlay/Menu/Play" method="_on_Button_button_up"]
