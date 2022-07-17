@@ -5,6 +5,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
+		print(moving)
 		if not moving:
 			if event.is_action_pressed("P2_right"):
 				moving = true
