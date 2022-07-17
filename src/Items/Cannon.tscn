@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/cannon sprite.png" type="Texture" id=1]
 [ext_resource path="res://src/Items/Cannon.gd" type="Script" id=2]
-[ext_resource path="res://assets/dice_dots.png" type="Texture" id=3]
+[ext_resource path="res://assets/dice_faces_wood.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -12,7 +12,7 @@ resource_name = "Firing"
 length = 0.4
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Cannon:position")
+tracks/0/path = NodePath("Cannon:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -20,37 +20,43 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Vector2( 32, 32 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 34 ), Vector2( 32, 30 ), Vector2( 32, 32 ) ]
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -2 ), Vector2( 0, 2 ), Vector2( 0, -2 ), Vector2( 0, 2 ), Vector2( 0, -2 ), Vector2( 0, 2 ), Vector2( 0, -2 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 64, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 128, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 192, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 256, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 320, 0, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -67,6 +73,7 @@ shape = SubResource( 1 )
 [node name="Cannon" type="Sprite" parent="."]
 position = Vector2( 32, 32 )
 texture = ExtResource( 1 )
+offset = Vector2( 0, -2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Firing = SubResource( 2 )

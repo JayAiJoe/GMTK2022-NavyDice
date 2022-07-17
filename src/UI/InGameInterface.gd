@@ -28,6 +28,7 @@ func set_paused(value : bool) -> void:
 
 func _on_Resume_button_up() -> void:
 	self.paused = false
+	DjBeats.play_sound("button2", 2)
 	
 
 func end_game(ship_id : int) -> void:
@@ -35,3 +36,7 @@ func end_game(ship_id : int) -> void:
 	menu.rect_size = Vector2(400, 70)
 	resume.visible = false
 	interface_title.text = "Player %s Wins" % str(ship_id)
+
+
+func _on_Exit_button_up() -> void:
+	DjBeats.play_sound("button2", 2)

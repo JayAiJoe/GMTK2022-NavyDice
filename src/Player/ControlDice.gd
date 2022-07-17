@@ -43,6 +43,7 @@ func roll(direction : int) -> void:
 	$MoveTween.start()
 	
 	yield($MoveTween,"tween_completed")
+	DjBeats.play_sound("thud", 1)
 	
 func set_old_faces() -> void:
 	$RollAnimation.playback_speed = 1

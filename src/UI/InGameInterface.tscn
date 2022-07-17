@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/font_title.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/ChangeSceneButton.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/UI/ChangeSceneButton.gd" type="Script" id=3]
 [ext_resource path="res://assets/ui_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/UI/InGameInterface.gd" type="Script" id=5]
 
@@ -52,15 +51,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Resume"
 
-[node name="Play" type="Button" parent="PauseOverlay/Menu" instance=ExtResource( 2 )]
+[node name="Exit" parent="PauseOverlay/Menu" instance=ExtResource( 2 )]
 margin_top = 90.0
 margin_right = 400.0
 margin_bottom = 160.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Exit"
-script = ExtResource( 3 )
 next_scene_path = "res://src/Screens/MainMenu.tscn"
 
 [connection signal="button_up" from="PauseOverlay/Menu/Resume" to="." method="_on_Resume_button_up"]
-[connection signal="button_up" from="PauseOverlay/Menu/Play" to="PauseOverlay/Menu/Play" method="_on_Button_button_up"]
+[connection signal="button_up" from="PauseOverlay/Menu/Exit" to="." method="_on_Exit_button_up"]

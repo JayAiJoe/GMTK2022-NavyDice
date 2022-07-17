@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cannon_fire.mp3-38d473474f90f37bd15d70ffbb87af02.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/cannon_fire.mp3"
+dest_files=[ "res://.import/cannon_fire.mp3-38d473474f90f37bd15d70ffbb87af02.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
