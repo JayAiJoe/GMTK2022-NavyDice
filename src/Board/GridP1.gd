@@ -1,5 +1,9 @@
 extends Grid
 
+func _ready() -> void:
+	POS.set_P1_origin(global_position)
+	Databases.grids[1] = self
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		if not moving:

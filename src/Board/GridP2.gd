@@ -2,6 +2,8 @@ extends Grid
 
 func _ready() -> void:
 	loading_edge = -1
+	POS.set_P2_origin(global_position)
+	Databases.grids[2] = self
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:

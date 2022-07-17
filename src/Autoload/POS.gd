@@ -6,6 +6,9 @@ var grid_columns := 6
 
 var directions = [Vector2(1, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(0, 1)]
 
+var P1_origin
+var P2_origin
+
 func global_to_grid(global_pos : Vector2, origin : Vector2) -> Vector2:
 	var temp = (global_pos - origin) / tile_size
 	temp.x = ceil(temp.x)
@@ -25,3 +28,15 @@ func is_in_grid(grid_pos : Vector2) -> bool:
 func is_on_board(global_pos : Vector2, origin : Vector2) -> bool:
 	var grid_pos = global_to_grid(global_pos, origin)
 	return is_in_grid(grid_pos)
+
+func get_P1_origin() -> Vector2:
+	return P1_origin
+
+func set_P1_origin(coordinates : Vector2) -> void:
+	P1_origin = coordinates
+
+func get_P2_origin() -> Vector2:
+	return P2_origin
+
+func set_P2_origin(coordinates : Vector2) -> void:
+	P2_origin = coordinates

@@ -13,14 +13,12 @@ var current_dice  = null
 var dice_position : Vector2 = Vector2(0, 0)
 
 var _grid = []
+var _grid_effects = []
 var moving : bool = false
 
 var loading_edge = 6
 
 var hull_hp
-
-#========Statuses and Effects
-var _grid_effects = []
 
 func _ready() -> void:
 	randomize()
@@ -32,8 +30,6 @@ func _ready() -> void:
 		_grid_effects.append(row)
 		
 	spawn_dice()
-	
-	hull_hp = 20
 
 func _on_RefillTimer_timeout() -> void:
 	spawn_dice()
@@ -100,7 +96,13 @@ func set_tile_state(coordinates : Vector2, state : int) -> void:
 	_grid[coordinates.y][coordinates.x] = state
 	$TileMap.set_cell(coordinates.x, coordinates.y, state)
 	
-func set_tile_effects(coordinates : Vector2) -> void:
+func get_tile_effects(coordinates : Vector2) -> int:
+	return _grid_effects[coordinates.y][coordinates.x]
+	
+func set_tile_effects(coordinates : Vector2, effect : int) -> void:
+	_grid_effects[coordinates.y][coordinates.x] = effect
+	
+func receive_projectile(projectile : Projectile):
 	pass
 	
 func reset_dice():

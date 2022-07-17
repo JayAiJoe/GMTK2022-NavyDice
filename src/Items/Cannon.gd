@@ -19,12 +19,14 @@ func randomdice() -> void:
 func fire(coordinates : Vector2, dice_face : int) -> void:
 	$AnimationPlayer.play("Firing")
 	yield($AnimationPlayer, "animation_finished")
+	var target_tile = Vector2(randi()%4 + 1,randi()%4 + 1)
 	var bullet = Projectile.instance()
 	if x_direction == 1:
-		bullet.target = Vector2(dice_face - 1, row - 1)
+		bullet.target_coord = POS.grid_to_global(target_tile, POS.get_P2_origin())
+		bullet.target_grid = 2
 	else:
-		bullet.target = Vector2(6 - dice_face, row - 1)
-	bullet.speed *= x_direction
+		bullet.target_coord = POS.grid_to_global(target_tile, POS.get_P1_origin())
+		bullet.target_grid = 1
 	add_child(bullet)
 	
 	randomdice()

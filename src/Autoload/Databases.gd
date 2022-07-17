@@ -1,7 +1,7 @@
 extends Node
 
 var next_dice_state
-var equipment_db
+var grids
 
 func _ready():
 	next_dice_state = {
@@ -36,15 +36,4 @@ func _ready():
 			3:[[5,3],[3,1],[2,3],[4,1]]},
 	}
 	
-	#=======================EQUIPMENTS==================
-	equipment_db = {
-		0:{"name":"conveyor belt"},
-		1:{"name":"double cannon"},
-		2:{"name":"loose dice"},
-		3:{"name":"block"},
-		4:{"name":"flipper"},
-		5:{"name":"gooey"},
-		6:{"name":"ice"},
-		7:{"name":"protect"},
-		8:{"name":"haste"}
-	}
+	grids = {1:null,2:null}
