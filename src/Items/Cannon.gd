@@ -17,6 +17,7 @@ var deck_temp = []
 func _ready():
 	randomize()
 	randomdice()
+	$Cannon.position.x = 32 - x_direction * 32
 
 func randomdice() -> void:
 	if deck_temp.size() == 0:
@@ -42,6 +43,7 @@ func randomdice() -> void:
 func fire(coordinates : Vector2, dice_face : int) -> void:
 	$AnimationPlayer.play("Firing")
 	yield($AnimationPlayer, "animation_finished")
+	DjBeats.play_sound("cannon", 2)
 	var target_tile = Vector2(randi()%4 + 1,randi()%4 + 1)
 	var bullet = Projectile.instance()
 	bullet.damage_value = dice_face

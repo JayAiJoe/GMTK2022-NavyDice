@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/thud2.mp3-be91b8eeeb8a040ee95b65dc3574e25c.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/thud2.mp3"
+dest_files=[ "res://.import/thud2.mp3-be91b8eeeb8a040ee95b65dc3574e25c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
