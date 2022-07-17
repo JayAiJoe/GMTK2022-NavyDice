@@ -36,6 +36,8 @@ stretch_margin_right = 64
 [node name="Tween" type="Tween" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
 margin_left = -60.0
 margin_right = 60.0
 margin_bottom = 120.0

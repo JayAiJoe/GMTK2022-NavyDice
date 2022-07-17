@@ -13,7 +13,7 @@ func _ready() -> void:
 	$GridP2.connect("hit", self, "update_ships")
 	
 	reset_health()
-	war_bar.set_value(0.5)
+	#war_bar.set_value(0.5)
 
 func update_ships(ship_id : int, damage : int) -> void:
 	if ship_id == 1:
