@@ -16,7 +16,7 @@ var dice_position : Vector2 = Vector2(0, 0)
 
 var _grid = []
 var _grid_effects = []
-var grid_id := 1
+export var grid_id := 1
 var moving : bool = false
 
 var loading_edge = 6
@@ -38,7 +38,6 @@ func _ready() -> void:
 	
 	for cannon in $Armaments.get_children():
 		cannon.connect("fired", self, "refresh_cannons")
-		
 	spawn_dice()
 
 func _on_RefillTimer_timeout() -> void:
@@ -177,7 +176,11 @@ func receive_projectile(projectile : Projectile):
 	
 func reset_dice():
 	moving = false
-	dice_position = Vector2.ZERO
+	if grid_id == 1:
+		dice_position = Vector2(0,2)
+	else:
+		dice_position = Vector2(5,2)
+	current_dice.global_position = POS.grid_to_global(dice_position, self.global_position)
 
 func refresh_cannons():
 	for cannon in $Armaments.get_children():

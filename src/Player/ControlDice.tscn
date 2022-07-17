@@ -299,16 +299,15 @@ shape = SubResource( 8 )
 
 [node name="MoveTween" type="Tween" parent="."]
 
-[node name="OldFaces" type="AnimatedSprite" parent="."]
-scale = Vector2( 1, 1e-05 )
-frames = SubResource( 1 )
-animation = "faces"
-centered = false
-
 [node name="NewFaces" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "faces"
 frame = 2
+centered = false
+
+[node name="OldFaces" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "faces"
 centered = false
 
 [node name="RollAnimation" type="AnimationPlayer" parent="."]
