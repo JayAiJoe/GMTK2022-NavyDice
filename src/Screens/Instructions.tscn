@@ -37,7 +37,7 @@ margin_right = 731.0
 margin_bottom = 146.0
 input_pass_on_modal_close_click = false
 custom_fonts/font = ExtResource( 9 )
-text = "The is a 2-player game where players race to sink their opponent's ship.
+text = "This is a 2-player game where players race to sink their opponent's ship.
  
 Use the WASD and ARROW keys to move the dice on each ship. Match a 
 cannon's dice value to load it and fire, damaging the enemy ship. Higher
