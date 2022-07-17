@@ -72,7 +72,7 @@ func move_dice(direction : int) -> void:
 			
 	elif destination.x == loading_edge:
 		yield(current_dice.slide(direction), "completed")
-		dice_position = destination
+		#dice_position = destination
 	moving = false
 
 func is_in_grid(coordinates : Vector2) -> bool:
@@ -91,7 +91,7 @@ func wrong_dice():
 	yield($PenaltyTimer, "timeout")
 	current_dice.wrong()
 	yield(current_dice.slide(undo_dir), "completed")
-	dice_position = destination
+	#dice_position = destination
 
 func get_tile_state(coordinates : Vector2) -> int:
 	return _grid[coordinates.y][coordinates.x]
