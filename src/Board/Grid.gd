@@ -84,6 +84,16 @@ func move_dice(direction : int) -> void:
 					t_effect = get_tile_effect(destination)
 					yield(current_dice.slide(direction), "completed")
 					dice_position = destination
+					
+				if t_effect == Databases.tile_effects.slime:
+					current_dice.speed_mult = 0.35
+				elif t_effect == Databases.tile_effects.fire:
+					set_tile_effect(destination, tile_states.free)
+					current_dice.consume() #fall animation
+					current_dice = null
+					var f = fires[destination]
+					fires.erase(destination)
+					remove_child(f)
 						
 			elif t_effect == Databases.tile_effects.fire:
 				set_tile_effect(destination, tile_states.free)
