@@ -60,6 +60,7 @@ func spawn_dice() -> void:
 	reset_dice()
 	var dice = ControlDice.instance()
 	dice.connect("consumed", self, "start_refill_timer")
+	dice.connect("wrong", self, "wrong_dice")
 	current_dice = dice
 	add_child(dice)
 	
@@ -94,6 +95,18 @@ func is_in_grid(coordinates : Vector2) -> bool:
 		if coordinates.y >=0 and coordinates.y < POS.grid_rows:
 			return true
 	return false
+
+func wrong_dice():
+	var undo_dir = (current_dice.last_dir+2)%4
+	print(undo_dir)
+	var destination = dice_position + POS.directions[undo_dir]
+	print(destination)
+	$PenaltyTimer.set_wait_time(0.5)
+	$PenaltyTimer.start()
+	yield($PenaltyTimer, "timeout")
+	current_dice.wrong()
+	yield(current_dice.slide(undo_dir), "completed")
+	dice_position = destination
 
 func get_tile_state(coordinates : Vector2) -> int:
 	return _grid[coordinates.y][coordinates.x]

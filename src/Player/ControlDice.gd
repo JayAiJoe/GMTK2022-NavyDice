@@ -3,6 +3,7 @@ extends Node2D
 class_name ControlDice
 
 signal consumed
+signal wrong
 
 var dice_state
 var anim_dir
@@ -16,18 +17,16 @@ var aoe = -1
 
 func _ready():
 	anim_dir = ["RollEast", "RollNorth", "RollWest", "RollSouth"]
+	$OldFaces.self_modulate = Color(1, 1, 1)
 	dice_state = [randi()%6 + 1, 0]
 	$OldFaces.frame = get_face_up() - 1
-	$OldFaces.self_modulate = Color(1, 1, 1)
 	
 func _on_ControlDice_area_entered(area: Area2D) -> void:
 	if area is Cannon:
 		if get_face_up() == area.value:
 			load_and_fire(area)
 		else:
-			$PenaltyAnimation.play("Wrong")
-			slide((last_dir+2)%4)
-			$OldFaces.self_modulate = Color(1, 1, 1)
+			emit_signal("wrong")
 
 func roll(direction : int) -> void:
 	last_dir = direction
@@ -67,8 +66,8 @@ func load_and_fire(area : Area2D):
 		(area as Cannon).fire(Vector2(get_face_up(), get_face_up()), get_face_up())
 		consume()
 
-func fall():
-	$RollAnimation.play("Fall")
+func wrong():
+	$PenaltyAnimation.play("Wrong")
 	
 func consume():
 	emit_signal("consumed")

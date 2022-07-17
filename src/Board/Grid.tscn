@@ -118,5 +118,7 @@ row = 6
 wait_time = 0.2
 one_shot = true
 
+[node name="PenaltyTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_Grid_body_entered"]
 [connection signal="timeout" from="RefillTimer" to="." method="_on_RefillTimer_timeout"]
