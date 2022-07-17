@@ -6,6 +6,7 @@ signal consumed
 
 var dice_state
 var anim_dir
+var last_dir
 
 #modifiers
 var blocker = false
@@ -17,11 +18,19 @@ func _ready():
 	anim_dir = ["RollEast", "RollNorth", "RollWest", "RollSouth"]
 	dice_state = [randi()%6 + 1, 0]
 	$OldFaces.frame = get_face_up() - 1
+	$OldFaces.self_modulate = Color(1, 1, 1)
 	
 func _on_ControlDice_area_entered(area: Area2D) -> void:
-	load_and_fire(area)
+	if area is Cannon:
+		if get_face_up() == area.value:
+			load_and_fire(area)
+		else:
+			$PenaltyAnimation.play("Wrong")
+			slide((last_dir+2)%4)
+			$OldFaces.self_modulate = Color(1, 1, 1)
 
 func roll(direction : int) -> void:
+	last_dir = direction
 	dice_state = change_face(dice_state, direction)
 	$NewFaces.frame = get_face_up() - 1
 	$RollAnimation.play(anim_dir[direction])
@@ -39,6 +48,7 @@ func set_old_faces() -> void:
 	$OldFaces.scale = Vector2(1, 1)
 
 func slide(direction : int) -> void:
+	last_dir = direction
 	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.12, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$MoveTween.start()
 	yield($MoveTween,"tween_completed")

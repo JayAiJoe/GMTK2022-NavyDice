@@ -26,6 +26,7 @@ var statuses = []
 var equipments = []
 
 func _ready() -> void:
+	randomize()
 	for y in (POS.grid_rows):
 		var row = []
 		for x in range(POS.grid_columns):
