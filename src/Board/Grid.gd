@@ -79,10 +79,12 @@ func move_dice(direction : int) -> void:
 			elif t_effect == Databases.tile_effects.ice:
 				pass
 			elif t_effect == Databases.tile_effects.fire:
-				print(destination)
 				set_tile_effect(destination, tile_states.free)
 				current_dice.consume() #fall animation
 				current_dice = null
+				var f = fires[destination]
+				fires.erase(destination)
+				remove_child(f)
 		moving = false
 			
 	elif destination.x == loading_edge:
@@ -121,15 +123,20 @@ func get_tile_effect(coordinates : Vector2) -> int:
 	return _grid_effects[coordinates.y][coordinates.x]
 	
 func set_tile_effect(coordinates : Vector2, effect : int) -> void:
-	_grid_effects[coordinates.y][coordinates.x] = effect
-	$TileMap_Effects.set_cellv(coordinates, -1)
 	if effect == Databases.tile_effects.fire:
+		$TileMap_Effects.set_cellv(coordinates, -1)
+		if get_tile_effect(coordinates) == Databases.tile_effects.fire:
+			return
 		var new_fire = FireTile.instance()
 		new_fire.position = POS.grid_to_global(coordinates,Vector2(32,32))
+		fires[coordinates] = new_fire
 		add_child(new_fire)
 	elif effect in [Databases.tile_effects.ice, Databases.tile_effects.slime]:
 		ongoing_effects[coordinates] = 3
 		$TileMap_Effects.set_cellv(coordinates, effect-1)
+	else:
+		$TileMap_Effects.set_cellv(coordinates, -1)
+	_grid_effects[coordinates.y][coordinates.x] = effect
 
 func inflict_tile_effects(coordinates : Vector2, effect : int) -> void:
 	match effect:
@@ -164,11 +171,16 @@ func reset_dice():
 func refresh_cannons():
 	for cannon in $Armaments.get_children():
 		(cannon as Cannon).randomdice()
-		
+	
+	var to_be_erased = []
 	for tile in ongoing_effects:
 		if ongoing_effects[tile] == 0:
 			set_tile_effect(tile, Databases.tile_effects.free)
-			ongoing_effects.erase(tile)
+			to_be_erased.append(tile)
 		else:
 			ongoing_effects[tile] -= 1
+	for tile in to_be_erased:
+		ongoing_effects.erase(tile)
 	print(ongoing_effects)
+	
+	
