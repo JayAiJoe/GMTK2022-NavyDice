@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/UI/WarBar.gd" type="Script" id=1]
-[ext_resource path="res://assets/icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/progress bar.png" type="Texture" id=2]
 [ext_resource path="res://assets/paper bg.png" type="Texture" id=3]
-[ext_resource path="res://assets/paper lines dot.png" type="Texture" id=4]
+[ext_resource path="res://assets/paper lines dot (1).png" type="Texture" id=4]
 
 [node name="WarBar" type="Control"]
 anchor_right = 1.0

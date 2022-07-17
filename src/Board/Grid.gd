@@ -10,6 +10,7 @@ signal hit(id, damage)
 
 export var ControlDice = preload("res://src/Player/ControlDice.tscn")
 export var FireTile = preload("res://src/Items/Fire.tscn")
+export var Explosion = preload("res://src/Items/Explosion.tscn")
 
 var current_dice  = null
 var dice_position : Vector2 = Vector2(0, 0)
@@ -148,7 +149,7 @@ func set_tile_effect(coordinates : Vector2, effect : int) -> void:
 		$TileMap_Effects.set_cellv(coordinates, -1)
 	_grid_effects[coordinates.y][coordinates.x] = effect
 
-func inflict_tile_effects(coordinates : Vector2, effect : int) -> void:
+func inflict_tile_effects(coordinates : Vector2, effect : int) -> void:	
 	match effect:
 		tile_effects.ice:
 			for i in range(-1,2):
@@ -173,6 +174,8 @@ func receive_projectile(projectile : Projectile):
 	emit_signal("hit", grid_id, projectile.damage_value)
 	if projectile.effect != tile_effects.free:
 		inflict_tile_effects(projectile.target_tile, projectile.effect)
+		
+	
 	
 func reset_dice():
 	moving = false

@@ -9,7 +9,8 @@ var effect
 var damage_value := 0
 
 func _ready():
-	$MoveTween.interpolate_property(self, "global_position", global_position, target_coord, 0.6, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$LobAnimation.play("Lob")
+	$MoveTween.interpolate_property(self, "global_position", global_position, target_coord, 1, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$MoveTween.start()
 	yield($MoveTween, "tween_completed")
 	Databases.grids[target_grid].receive_projectile(self)

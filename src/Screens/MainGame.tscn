@@ -33,8 +33,44 @@ texture = ExtResource( 7 )
 [node name="GridP1" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, 256 )
 
+[node name="Cannon" parent="GridP1/Armaments/Cannon" index="1"]
+rotation = -0.523599
+
+[node name="Cannon" parent="GridP1/Armaments/Cannon2" index="1"]
+rotation = -0.523599
+
+[node name="Cannon" parent="GridP1/Armaments/Cannon3" index="1"]
+rotation = -0.523599
+
+[node name="Cannon" parent="GridP1/Armaments/Cannon4" index="1"]
+rotation = -0.523599
+
+[node name="Cannon" parent="GridP1/Armaments/Cannon5" index="1"]
+rotation = -0.523599
+
+[node name="Cannon" parent="GridP1/Armaments/Cannon6" index="1"]
+rotation = -0.523599
+
 [node name="GridP2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1216, 256 )
+
+[node name="Cannon" parent="GridP2/Armaments/Cannon" index="1"]
+rotation = 0.523599
+
+[node name="Cannon" parent="GridP2/Armaments/Cannon2" index="1"]
+rotation = 0.523599
+
+[node name="Cannon" parent="GridP2/Armaments/Cannon3" index="1"]
+rotation = 0.523599
+
+[node name="Cannon" parent="GridP2/Armaments/Cannon4" index="1"]
+rotation = 0.523599
+
+[node name="Cannon" parent="GridP2/Armaments/Cannon5" index="1"]
+rotation = 0.523599
+
+[node name="Cannon" parent="GridP2/Armaments/Cannon6" index="1"]
+rotation = 0.523599
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -42,3 +78,18 @@ layer = 100
 [node name="WarBar" parent="UILayer" instance=ExtResource( 5 )]
 
 [node name="InGameInterface" parent="UILayer" instance=ExtResource( 6 )]
+
+[editable path="GridP1"]
+[editable path="GridP1/Armaments/Cannon"]
+[editable path="GridP1/Armaments/Cannon2"]
+[editable path="GridP1/Armaments/Cannon3"]
+[editable path="GridP1/Armaments/Cannon4"]
+[editable path="GridP1/Armaments/Cannon5"]
+[editable path="GridP1/Armaments/Cannon6"]
+[editable path="GridP2"]
+[editable path="GridP2/Armaments/Cannon"]
+[editable path="GridP2/Armaments/Cannon2"]
+[editable path="GridP2/Armaments/Cannon3"]
+[editable path="GridP2/Armaments/Cannon4"]
+[editable path="GridP2/Armaments/Cannon5"]
+[editable path="GridP2/Armaments/Cannon6"]
