@@ -22,9 +22,9 @@ func _ready():
 	anim_dir = ["RollEast", "RollNorth", "RollWest", "RollSouth"]
 	$OldFaces.self_modulate = Color(1, 1, 1)
 	dice_state = [randi()%6 + 1, 0]
-	$OldFaces.frame = get_face_up() - 1
 	speed_mult = 1
 	emit_signal("changed", dice_state)
+	$OldFaces.frame = get_face_up() - 1
 	
 func _on_ControlDice_area_entered(area: Area2D) -> void:
 	if area is Cannon:
