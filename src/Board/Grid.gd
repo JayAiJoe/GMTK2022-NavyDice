@@ -6,6 +6,7 @@ enum tile_states{free, broken, blocked}
 enum tile_effects{free, icy, gooey, burning}
 
 signal move
+signal hit(id, damage)
 
 export var ControlDice = preload("res://src/Player/ControlDice.tscn")
 
@@ -14,6 +15,7 @@ var dice_position : Vector2 = Vector2(0, 0)
 
 var _grid = []
 var _grid_effects = []
+var grid_id := 1
 var moving : bool = false
 
 var loading_edge = 6
@@ -110,7 +112,7 @@ func set_tile_effects(coordinates : Vector2, effect : int) -> void:
 	_grid_effects[coordinates.y][coordinates.x] = effect
 	
 func receive_projectile(projectile : Projectile):
-	pass
+	emit_signal("hit", grid_id, projectile.damage_value)
 	
 func reset_dice():
 	moving = false

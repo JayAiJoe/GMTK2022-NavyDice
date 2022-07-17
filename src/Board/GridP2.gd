@@ -2,6 +2,7 @@ extends Grid
 
 func _ready() -> void:
 	loading_edge = -1
+	grid_id = 2
 	POS.set_P2_origin(global_position)
 	Databases.grids[2] = self
 

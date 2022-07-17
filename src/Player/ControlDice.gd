@@ -61,14 +61,14 @@ func set_dice_state(state) -> void:
 func change_face(curr_state, direction : int):
 	return Databases.next_dice_state[curr_state[0]][curr_state[1]][direction]
 	
-func load_and_fire(area : Area2D):
+func load_and_fire(area : Area2D) -> void:
 	if area is Cannon:
 		(area as Cannon).fire(Vector2(get_face_up(), get_face_up()), get_face_up())
 		consume()
 
-func wrong():
+func wrong() -> void:
 	$PenaltyAnimation.play("Wrong")
 	
-func consume():
+func consume() -> void:
 	emit_signal("consumed")
 	queue_free()
