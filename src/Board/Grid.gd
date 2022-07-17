@@ -9,6 +9,7 @@ signal move
 signal hit(id, damage)
 
 export var ControlDice = preload("res://src/Player/ControlDice.tscn")
+export var FireTile = preload("res://src/Items/Fire.tscn")
 
 var current_dice  = null
 var dice_position : Vector2 = Vector2(0, 0)
@@ -109,7 +110,14 @@ func get_tile_effects(coordinates : Vector2) -> int:
 	
 func set_tile_effects(coordinates : Vector2, effect : int) -> void:
 	_grid_effects[coordinates.y][coordinates.x] = effect
-	$TileMap_Effects.set_cellv(coordinates, effect-1)
+	if effect == Databases.tile_effects.fire:
+		var new_fire = FireTile.instance()
+		new_fire.position = POS.grid_to_global(coordinates,Vector2(32,32))
+		add_child(new_fire)
+		print(coordinates)
+		print(new_fire.position)
+	else:
+		$TileMap_Effects.set_cellv(coordinates, effect-1)
 	
 func inflict_tile_effects(coordinates : Vector2, effect : int) -> void:
 	match effect:

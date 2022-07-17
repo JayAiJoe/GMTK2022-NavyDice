@@ -50,6 +50,10 @@ shader_param/amplitude_y = 2.0
 shader_param/amplitude_x = 2.0
 
 [node name="Particles2D" type="Particles2D"]
+position = Vector2( 32, 32 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 50
+z_as_relative = false
 amount = 20
 randomness = 1.0
 process_material = SubResource( 3 )
