@@ -77,7 +77,14 @@ func move_dice(direction : int) -> void:
 			if t_effect == Databases.tile_effects.slime:
 				current_dice.speed_mult = 0.35
 			elif t_effect == Databases.tile_effects.ice:
-				pass
+				while t_effect == Databases.tile_effects.ice:
+					destination = dice_position + POS.directions[direction]
+					if not is_in_grid(destination):
+						break
+					t_effect = get_tile_effect(destination)
+					yield(current_dice.slide(direction), "completed")
+					dice_position = destination
+						
 			elif t_effect == Databases.tile_effects.fire:
 				set_tile_effect(destination, tile_states.free)
 				current_dice.consume() #fall animation
@@ -132,6 +139,10 @@ func set_tile_effect(coordinates : Vector2, effect : int) -> void:
 		fires[coordinates] = new_fire
 		add_child(new_fire)
 	elif effect in [Databases.tile_effects.ice, Databases.tile_effects.slime]:
+		if get_tile_effect(coordinates) == Databases.tile_effects.fire:
+			var f = fires[coordinates]
+			fires.erase(f)
+			remove_child(f)
 		ongoing_effects[coordinates] = 3
 		$TileMap_Effects.set_cellv(coordinates, effect-1)
 	else:

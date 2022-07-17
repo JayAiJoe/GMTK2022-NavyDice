@@ -1,6 +1,6 @@
 extends Node2D
 
-var max_health := 10
+var max_health := 20
 var P1_hp := 0.0
 var P2_hp := 0.0
 

@@ -11,7 +11,7 @@ export var x_direction = 1
 var value
 var powerup
 
-var deck = [1, 2 , 2, 3, 3, 3, 4, 4, 4, 5, 6]
+var deck = [1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 6]
 var deck_temp = []
 
 func _ready():
@@ -38,7 +38,16 @@ func randomdice() -> void:
 			powerup = Databases.tile_effects.ice
 			if randi()%2==0:
 				powerup = Databases.tile_effects.slime
-			
+	
+	var c = Color(1, 1, 1)
+	match powerup:
+		Databases.tile_effects.fire:
+			c = Color(0.984314, 0.494118, 0.137255)
+		Databases.tile_effects.ice:
+			c = Color(0.443137, 0.713726, 0.811765)
+		Databases.tile_effects.slime:
+			c = Color(0.337255, 0.509804, 0.372549)
+	$DicePreview.self_modulate = c
 
 func fire(coordinates : Vector2, dice_face : int) -> void:
 	$AnimationPlayer.play("Firing")
