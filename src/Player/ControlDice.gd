@@ -4,6 +4,7 @@ class_name ControlDice
 
 signal consumed
 signal wrong
+signal changed
 
 var dice_state
 var anim_dir
@@ -23,6 +24,7 @@ func _ready():
 	dice_state = [randi()%6 + 1, 0]
 	$OldFaces.frame = get_face_up() - 1
 	speed_mult = 1
+	emit_signal("changed", dice_state)
 	
 func _on_ControlDice_area_entered(area: Area2D) -> void:
 	if area is Cannon:
@@ -64,8 +66,10 @@ func get_face_up() -> int :
 func set_dice_state(state) -> void:
 	dice_state = state
 	
-func change_face(curr_state, direction : int):
-	return Databases.next_dice_state[curr_state[0]][curr_state[1]][direction]
+func change_face(curr_state, direction : int) -> Array:
+	var next_state = Databases.next_dice_state[curr_state[0]][curr_state[1]][direction]
+	emit_signal("changed", next_state)
+	return next_state
 	
 func load_and_fire(area : Area2D) -> void:
 	if area is Cannon:

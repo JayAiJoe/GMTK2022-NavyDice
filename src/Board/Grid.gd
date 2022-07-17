@@ -58,6 +58,7 @@ func spawn_dice() -> void:
 	var dice = ControlDice.instance()
 	dice.connect("consumed", self, "start_refill_timer")
 	dice.connect("wrong", self, "wrong_dice")
+	dice.connect("changed", $DiceVisualizer, "set_input")
 	current_dice = dice
 	add_child(dice)
 	reset_dice()
