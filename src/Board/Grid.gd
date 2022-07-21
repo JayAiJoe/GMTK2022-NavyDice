@@ -71,44 +71,47 @@ func move_dice(direction : int) -> void:
 		if t_state == tile_states.free:
 			yield(current_dice.roll(direction), "completed")
 			dice_position = destination
-			
-			#check ice or slime
-			current_dice.speed_mult = 1
-			if t_effect == Databases.tile_effects.slime:
-				current_dice.speed_mult = 0.35
-			elif t_effect == Databases.tile_effects.ice:
-				while t_effect == Databases.tile_effects.ice:
-					destination = dice_position + POS.directions[direction]
-					if not is_in_grid(destination):
-						break
-					t_effect = get_tile_effect(destination)
-					yield(current_dice.slide(direction), "completed")
-					dice_position = destination
-					
-				if t_effect == Databases.tile_effects.slime:
-					current_dice.speed_mult = 0.35
-				elif t_effect == Databases.tile_effects.fire:
-					set_tile_effect(destination, tile_states.free)
-					current_dice.consume() #fall animation
-					current_dice = null
-					var f = fires[destination]
-					fires.erase(destination)
-					remove_child(f)
-						
-			elif t_effect == Databases.tile_effects.fire:
-				set_tile_effect(destination, tile_states.free)
-				current_dice.consume() #fall animation
-				current_dice = null
-				var f = fires[destination]
-				fires.erase(destination)
-				remove_child(f)
+			#check_tile_effect(t_effect, direction)
+			yield(check_tile_effect(t_effect, direction), "completed")
+		print("NO")
 		moving = false
 			
 	elif destination.x == loading_edge:
 		yield(current_dice.slide(direction), "completed")
 		
 	else:
+		print("ELSE")
 		moving = false
+
+func check_tile_effect(effect : int, dir : int) -> void:
+	var dest = dice_position + POS.directions[dir]
+	
+	#reset
+	current_dice.speed_mult = 1
+	match effect:
+		Databases.tile_effects.ice:
+			if not is_in_grid(dest):
+				return
+			print("pre moving ", moving)
+			yield(current_dice.slide(dir), "completed")
+			print("2")
+			print("post moving ", moving)
+			dice_position = dest
+			dest = dice_position + POS.directions[dir]
+			effect = get_tile_effect(dice_position)
+			yield(check_tile_effect(effect, dir), "completed")
+			
+		Databases.tile_effects.slime:
+			current_dice.speed_mult = 0.35
+			
+		Databases.tile_effects.fire:
+			set_tile_effect(dice_position, tile_states.free)
+			current_dice.consume()
+			current_dice = null
+			var f = fires[dice_position]
+			fires.erase(dice_position)
+			remove_child(f)
+	yield(get_tree(), "idle_frame")
 
 func is_in_grid(coordinates : Vector2) -> bool:
 	if coordinates.x >= 0 and coordinates.x < POS.grid_columns:
@@ -126,6 +129,7 @@ func wrong_dice():
 	yield($PenaltyTimer, "timeout")
 	current_dice.wrong()
 	yield(current_dice.slide(undo_dir), "completed")
+	print("wrong")
 	moving = false
 	#dice_position = destination
 
@@ -179,21 +183,20 @@ func inflict_tile_effects(coordinates : Vector2, effect : int) -> void:
 			else:
 				for i in range(-1,2):
 					set_tile_effect(coordinates + Vector2(0,i), effect)
-	
+					
 func receive_projectile(projectile : Projectile):
 	emit_signal("hit", grid_id, projectile.damage_value)
 	if projectile.effect != tile_effects.free:
 		inflict_tile_effects(projectile.target_tile, projectile.effect)
-		
-	
 	
 func reset_dice():
+	print("reset")
 	moving = false
 	if grid_id == 1:
 		dice_position = Vector2(0,2)
 	else:
 		dice_position = Vector2(5,2)
-	current_dice.global_position = POS.grid_to_global(dice_position, self.global_position)
+	current_dice.global_position = POS.grid_to_global(dice_position, global_position)
 
 func refresh_cannons():
 	for cannon in $Armaments.get_children():
