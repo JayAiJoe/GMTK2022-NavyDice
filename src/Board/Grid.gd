@@ -74,14 +74,12 @@ func move_dice(direction : int) -> void:
 			dice_position = destination
 			#check_tile_effect(t_effect, direction)
 			yield(check_tile_effect(t_effect), "completed")
-		print("NO")
 		moving = false
 			
 	elif destination.x == loading_edge:
 		yield(current_dice.slide(direction), "completed")
 		
 	else:
-		print("ELSE")
 		moving = false
 
 func check_tile_effect(effect : int) -> void:

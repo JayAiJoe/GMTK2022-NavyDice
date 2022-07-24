@@ -26,7 +26,6 @@ func randomdice() -> void:
 		deck_temp.shuffle()
 	value = deck_temp.pop_front()
 	$DicePreview.frame = value-1
-	target_tile = Vector2(randi()%6,randi()%6)
 	
 	powerup = Databases.tile_effects.free
 	match value:
@@ -43,6 +42,7 @@ func randomdice() -> void:
 				if randi()%2==0:
 					powerup = Databases.tile_effects.slime
 	
+	target_tile = Vector2(randi()%6,randi()%6) #make smarter targetting pa
 	var c = Color(1, 1, 1)
 	match powerup:
 		Databases.tile_effects.fire:
