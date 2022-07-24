@@ -61,15 +61,17 @@ func fire(coordinates : Vector2, dice_face : int) -> void:
 	yield($AnimationPlayer, "animation_finished")
 	DjBeats.play_sound("cannon", 2)
 	var bullet = Projectile.instance()
-	bullet.damage_value = dice_face
-	bullet.effect = powerup
-	bullet.target_tile = target_tile
+	
 	if x_direction == 1:
+		target_tile = POS.flip_h_coordinates(target_tile)
 		bullet.target_coord = POS.grid_to_global(target_tile, POS.get_P2_origin())
 		bullet.target_grid = 2
 	else:
 		bullet.target_coord = POS.grid_to_global(target_tile, POS.get_P1_origin())
 		bullet.target_grid = 1
+	bullet.damage_value = dice_face
+	bullet.effect = powerup
+	bullet.target_tile = target_tile
 	add_child(bullet)
 	emit_signal("fired")
 

@@ -28,6 +28,9 @@ func is_in_grid(grid_pos : Vector2) -> bool:
 func is_on_board(global_pos : Vector2, origin : Vector2) -> bool:
 	var grid_pos = global_to_grid(global_pos, origin)
 	return is_in_grid(grid_pos)
+	
+func flip_h_coordinates(coordinates : Vector2) -> Vector2:
+	return Vector2(grid_columns-1, grid_rows-1) - coordinates
 
 func get_P1_origin() -> Vector2:
 	return P1_origin
