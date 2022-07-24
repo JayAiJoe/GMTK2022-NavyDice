@@ -56,7 +56,7 @@ func set_old_faces() -> void:
 
 func slide(direction : int) -> void:
 	last_dir = direction
-	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.25/speed_mult, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.15/speed_mult, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$MoveTween.start()
 	yield($MoveTween,"tween_completed")
 	print("1")

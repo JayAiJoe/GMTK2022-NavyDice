@@ -10,6 +10,7 @@ export var x_direction = 1
 
 var value
 var powerup
+var target_tile
 
 var deck = [1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 6]
 var deck_temp = []
@@ -25,6 +26,7 @@ func randomdice() -> void:
 		deck_temp.shuffle()
 	value = deck_temp.pop_front()
 	$DicePreview.frame = value-1
+	target_tile = Vector2(randi()%6,randi()%6)
 	
 	powerup = Databases.tile_effects.free
 	match value:
@@ -45,17 +47,19 @@ func randomdice() -> void:
 	match powerup:
 		Databases.tile_effects.fire:
 			c = Color(0.984314, 0.494118, 0.137255)
+			target_tile = Vector2(randi()%4 + 1,randi()%4 + 1)
 		Databases.tile_effects.ice:
 			c = Color(0.443137, 0.713726, 0.811765)
+			target_tile = Vector2(randi()%2 + 3,randi()%4 + 1)
 		Databases.tile_effects.slime:
 			c = Color(0.337255, 0.509804, 0.372549)
+			target_tile = Vector2(randi()%2 + 1,randi()%4 + 1)
 	$DicePreview.self_modulate = c
 
 func fire(coordinates : Vector2, dice_face : int) -> void:
 	$AnimationPlayer.play("Firing")
 	yield($AnimationPlayer, "animation_finished")
 	DjBeats.play_sound("cannon", 2)
-	var target_tile = Vector2(randi()%4 + 1,randi()%4 + 1)
 	var bullet = Projectile.instance()
 	bullet.damage_value = dice_face
 	bullet.effect = powerup

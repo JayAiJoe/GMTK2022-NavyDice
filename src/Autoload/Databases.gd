@@ -2,7 +2,7 @@ extends Node
 
 var next_dice_state
 var grids
-enum tile_effects {free, ice, slime, fire}
+enum tile_effects {free, ice, slime, fire, block, rotate}
 
 func _ready():
 	next_dice_state = {

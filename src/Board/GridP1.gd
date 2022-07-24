@@ -6,7 +6,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
-		if not moving:
+		if not moving and current_dice:
 			if event.is_action_pressed("P1_right"):
 				moving = true
 				move_dice(0)
