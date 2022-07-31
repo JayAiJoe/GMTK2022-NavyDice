@@ -41,7 +41,7 @@ func roll(direction : int) -> void:
 	$RollAnimation.play(anim_dir[direction])
 	
 	$NewFaces.show()
-	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.15/speed_mult, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	$MoveTween.interpolate_property(self, "global_position", global_position, global_position + POS.directions[direction] * POS.tile_size, 0.15/speed_mult, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$MoveTween.start()
 	
 	yield($MoveTween,"tween_completed")

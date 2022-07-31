@@ -40,8 +40,8 @@ animations = [ {
 
 [sub_resource type="Animation" id=9]
 resource_name = "RollNorth"
-length = 0.12
-step = 0.01
+length = 0.15
+step = 0.005
 tracks/0/type = "value"
 tracks/0/path = NodePath("OldFaces:scale")
 tracks/0/interp = 2
@@ -49,10 +49,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( 0.5, 0.5, 2 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.7, 1 ), Vector2( 0, 1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 0.707, 1 ), Vector2( 0, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("NewFaces:scale")
@@ -61,8 +61,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( 0.5, 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( 0, 1 ), Vector2( 0.7, 1 ), Vector2( 1, 1 ) ]
 }
@@ -73,8 +73,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( 0.5, 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 32, 0 ), Vector2( 64, 0 ) ]
 }
@@ -85,7 +85,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.12 ),
+"times": PoolRealArray( 0.15 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -99,16 +99,16 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( 0.5, 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -12.8, 0 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=12]
 resource_name = "RollNorth"
-length = 0.12
-step = 0.01
+length = 0.15
+step = 0.005
 tracks/0/type = "value"
 tracks/0/path = NodePath("OldFaces:scale")
 tracks/0/interp = 2
@@ -116,10 +116,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( 1, 0.5, 2 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 0.7 ), Vector2( 1, 0 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.707 ), Vector2( 1, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("NewFaces:scale")
@@ -128,10 +128,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( 1, 0.5, 2 ),
 "update": 0,
-"values": [ Vector2( 1, 0 ), Vector2( 1, 0.7 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 1, 0 ), Vector2( 1, 0.707 ), Vector2( 1, 1 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("NewFaces:position")
@@ -140,8 +140,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( 1, 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( 0, 64 ), Vector2( 0, 32 ), Vector2( 0, 0 ) ]
 }
@@ -152,7 +152,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.12 ),
+"times": PoolRealArray( 0.15 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -166,16 +166,16 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( 1, 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -12.8 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=11]
 resource_name = "RollSouth"
-length = 0.12
-step = 0.01
+length = 0.15
+step = 0.005
 tracks/0/type = "value"
 tracks/0/path = NodePath("OldFaces:scale")
 tracks/0/interp = 2
@@ -183,10 +183,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( -2, 0.5, 2 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 0.7 ), Vector2( 1, 0 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 0.707 ), Vector2( 1, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("NewFaces:scale")
@@ -195,10 +195,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( -2, 0.5, 2 ),
 "update": 0,
-"values": [ Vector2( 1, 0 ), Vector2( 1, 0.7 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 1, 0 ), Vector2( 1, 0.707 ), Vector2( 1, 1 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("OldFaces:position")
@@ -207,8 +207,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( -2, 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 32 ), Vector2( 0, 64 ) ]
 }
@@ -219,7 +219,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.12 ),
+"times": PoolRealArray( 0.15 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -233,16 +233,16 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( -2, 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -12.8 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=10]
 resource_name = "RollWest"
-length = 0.12
-step = 0.01
+length = 0.15
+step = 0.005
 tracks/0/type = "value"
 tracks/0/path = NodePath("OldFaces:scale")
 tracks/0/interp = 2
@@ -250,10 +250,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( -2, 0.5, 2 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.7, 1 ), Vector2( 0, 1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 0.707, 1 ), Vector2( 0, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("NewFaces:scale")
@@ -262,10 +262,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( -2, 0.5, 2 ),
 "update": 0,
-"values": [ Vector2( 0, 1 ), Vector2( 0.7, 1 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 0, 1 ), Vector2( 0.707, 1 ), Vector2( 1, 1 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("NewFaces:position")
@@ -274,8 +274,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 0.5, 1, 2 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( -2, 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( 64, 0 ), Vector2( 32, 0 ), Vector2( 0, 0 ) ]
 }
@@ -286,7 +286,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.12 ),
+"times": PoolRealArray( 0.15 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -300,8 +300,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.06, 0.12 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.075, 0.15 ),
+"transitions": PoolRealArray( -2, 0.5, 2 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( -12.8, 0 ), Vector2( 0, 0 ) ]
 }
@@ -348,7 +348,6 @@ shape = SubResource( 8 )
 [node name="MoveTween" type="Tween" parent="."]
 
 [node name="NewFaces" type="AnimatedSprite" parent="."]
-position = Vector2( 64, 0 )
 scale = Vector2( 1e-05, 1 )
 frames = SubResource( 1 )
 animation = "faces"
